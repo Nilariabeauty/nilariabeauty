@@ -4,24 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nilaria Beauty | Luxury Press-On Nails</title>
-    <!-- Import Montserrat Font from Google Fonts -->
+    <!-- Montserrat & Playfair Display Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            /* Official Nilaria Brand Palette */
-            --rose-gold: #DFA58C;
+            --rose-gold: #C58B7E;
+            --soft-gold: #D4AF37;
             --blush-pink: #F7DADA;
-            --soft-peach: #FBE4D6;
-            --nude-pink: #F9EDE6;
             --warm-nude: #F2E6D9;
             --cream: #FFF6F1;
-            --dusty-rose: #EAC1B7;
-            --light-taupe: #E6D6C4;
             --soft-ivory: #FEFAF6;
-            --text-dark: #4A3E3D;
+            --text-dark: #2D2424; /* High contrast text */
+            --card-bg: #FFFFFF;
         }
 
         body {
@@ -30,6 +27,7 @@
             color: var(--text-dark);
             margin: 0;
             padding: 0;
+            line-height: 1.6;
         }
 
         /* Header Styling */
@@ -37,24 +35,26 @@
             background-color: var(--cream);
             text-align: center;
             padding: 25px 20px;
-            border-bottom: 1px solid var(--warm-nude);
+            border-bottom: 2px solid var(--warm-nude);
         }
 
         .logo-title {
-            font-family: 'Times New Roman', Times, serif; /* Trajan Pro fallback */
-            font-size: 32px;
-            letter-spacing: 5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 34px;
+            letter-spacing: 6px;
             color: var(--rose-gold);
             margin: 0;
+            font-weight: 600;
             text-transform: uppercase;
         }
 
         .logo-subtitle {
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 4px;
-            color: var(--text-dark);
+            color: var(--soft-gold);
             margin-top: 5px;
             text-transform: uppercase;
+            font-weight: 600;
         }
 
         nav {
@@ -62,35 +62,48 @@
         }
 
         nav a {
-            margin: 0 15px;
+            margin: 0 12px;
             color: var(--text-dark);
             text-decoration: none;
             font-size: 13px;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-weight: 500;
+            font-weight: 600;
         }
 
-        /* Hero Banner */
+        nav a:hover {
+            color: var(--rose-gold);
+        }
+
+        /* Hero Banner & Bio */
         .hero {
             text-align: center;
-            padding: 50px 20px;
+            padding: 40px 20px;
             background: linear-gradient(180deg, var(--cream) 0%, var(--soft-ivory) 100%);
+            border-bottom: 1px solid var(--warm-nude);
         }
 
         .hero h2 {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Playfair Display', serif;
             font-size: 30px;
             color: var(--rose-gold);
-            letter-spacing: 2px;
             margin-bottom: 10px;
         }
 
-        .hero p {
+        .bio-box {
+            background: var(--card-bg);
+            border: 1px solid var(--rose-gold);
+            display: inline-block;
+            padding: 15px 25px;
+            border-radius: 30px;
+            margin-top: 15px;
+            box-shadow: 0 4px 12px rgba(197, 139, 126, 0.1);
+        }
+
+        .bio-box p {
+            margin: 4px 0;
             font-size: 14px;
-            letter-spacing: 1px;
-            color: var(--text-dark);
-            font-style: italic;
+            font-weight: 500;
         }
 
         .container {
@@ -101,12 +114,17 @@
 
         .section-title {
             text-align: center;
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Playfair Display', serif;
             font-size: 26px;
             color: var(--rose-gold);
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin: 40px 0 20px 0;
             text-transform: uppercase;
+        }
+
+        .section-title::after {
+            content: " 🌸";
+            font-size: 20px;
         }
 
         /* Product Grid */
@@ -117,34 +135,33 @@
         }
 
         .product-card {
-            background-color: var(--cream);
+            background-color: var(--card-bg);
             border: 1px solid var(--warm-nude);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 20px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            box-shadow: 0 4px 10px rgba(223, 165, 140, 0.08);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
         }
 
         .product-img-placeholder {
-            background-color: var(--nude-pink);
+            background-color: var(--warm-nude);
             height: 220px;
-            border-radius: 6px;
+            border-radius: 8px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: var(--rose-gold);
-            font-weight: 500;
-            border: 1px dashed var(--dusty-rose);
+            font-weight: 600;
+            border: 1px dashed var(--rose-gold);
         }
 
         .product-card h3 {
-            font-family: 'Times New Roman', Times, serif;
-            color: var(--rose-gold);
-            font-size: 20px;
+            font-family: 'Playfair Display', serif;
+            color: var(--text-dark);
+            font-size: 22px;
             margin: 15px 0 5px 0;
-            letter-spacing: 1px;
         }
 
         .product-desc {
@@ -157,68 +174,96 @@
         .product-meta {
             font-size: 12px;
             color: var(--text-dark);
-            opacity: 0.85;
             margin-bottom: 15px;
             border-top: 1px solid var(--warm-nude);
             padding-top: 10px;
         }
 
         .price {
-            font-size: 20px;
-            font-weight: 600;
+            font-size: 22px;
+            font-weight: 700;
             color: var(--rose-gold);
             margin-bottom: 15px;
         }
 
         .btn {
-            background-color: var(--rose-gold);
+            background: linear-gradient(135deg, var(--rose-gold), var(--soft-gold));
             color: white;
             text-decoration: none;
             text-align: center;
             padding: 12px;
-            border-radius: 20px;
+            border-radius: 25px;
             font-size: 12px;
             letter-spacing: 1.5px;
             text-transform: uppercase;
-            font-weight: 600;
+            font-weight: 700;
             display: block;
-            transition: opacity 0.2s ease;
+            box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2);
         }
 
-        .btn:hover {
-            opacity: 0.9;
-        }
-
-        /* Kit & Details Boxes */
+        /* Kit & Sizing Tables */
         .info-box {
-            background-color: var(--cream);
+            background-color: var(--card-bg);
             border: 1px solid var(--warm-nude);
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 25px;
             margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
         }
 
-        .info-box ul {
-            padding-left: 20px;
-            line-height: 1.8;
+        .size-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .size-table th {
+            background-color: var(--cream);
+            color: var(--rose-gold);
+            padding: 10px;
+            border: 1px solid var(--warm-nude);
+            font-family: 'Playfair Display', serif;
+        }
+
+        .size-table td {
+            padding: 8px;
+            border: 1px solid var(--warm-nude);
+        }
+
+        /* Footer & Socials */
+        footer {
+            background-color: var(--cream);
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 50px;
+            border-top: 2px solid var(--warm-nude);
+        }
+
+        .footer-logo {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            border: 2px solid var(--rose-gold);
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            margin: 20px 0;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 10px;
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 600;
             font-size: 14px;
         }
 
-        /* Delivery & Payment Section */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-        }
-
-        footer {
-            text-align: center;
-            padding: 30px;
-            font-size: 12px;
-            color: var(--text-dark);
-            opacity: 0.8;
-            margin-top: 50px;
-            border-top: 1px solid var(--warm-nude);
+        .social-links a:hover {
+            color: var(--rose-gold);
         }
     </style>
 </head>
@@ -229,15 +274,20 @@
         <div class="logo-subtitle">BEAUTY</div>
         <nav>
             <a href="#shop">Shop</a>
-            <a href="#included">Nail Prep Kit</a>
-            <a href="#delivery">Shipping & Payment</a>
+            <a href="#sizing">Sizing Guide</a>
+            <a href="#included">Prep Kit</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
 
     <div class="hero">
-        <h2>Soft. Elegant. Feminine. Timeless.</h2>
-        <p>Salon-quality luxury press-on nails crafted for effortless elegance.</p>
+        <h2>✨ Luxury at Your Fingertips</h2>
+        <div class="bio-box">
+            <p>✨ Luxury at Your Fingertips</p>
+            <p>💖 Press-On Nails You’ll Love</p>
+            <p>🌸 Effortless Beauty, Everyday</p>
+            <p>🇨🇦 Shipping Across Canada</p>
+        </div>
     </div>
 
     <div class="container">
@@ -254,8 +304,9 @@
                     <h3>Golden Mocha</h3>
                     <div class="product-desc">Indulge in warm caramel tones, soft nude bases, and delicate molten gold accents designed to capture the light for an effortless, everyday luxury look.</div>
                     <div class="product-meta">
-                        <strong>Shape:</strong> Medium Almond<br>
-                        <strong>Finish:</strong> Glossy
+                        <strong>Includes:</strong> 10 Press-On Nails<br>
+                        <strong>Available Sizes:</strong> XS, S, M, L<br>
+                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
                     </div>
                 </div>
                 <div>
@@ -271,8 +322,9 @@
                     <h3>Lavender Bloom</h3>
                     <div class="product-desc">Soft, romantic, and dreamy. Lavender Bloom pairs delicate lilac hues with hand-crafted floral artistry for a sweet, ultra-feminine finish.</div>
                     <div class="product-meta">
-                        <strong>Shape:</strong> Medium Almond<br>
-                        <strong>Finish:</strong> Glossy
+                        <strong>Includes:</strong> 10 Press-On Nails<br>
+                        <strong>Available Sizes:</strong> XS, S, M, L<br>
+                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
                     </div>
                 </div>
                 <div>
@@ -288,8 +340,9 @@
                     <h3>Blushing Butterfly</h3>
                     <div class="product-desc">Flutter into whimsical elegance with soft petal pinks blending into ethereal lavender, finished with intricate butterfly wings that capture an enchanting radiance.</div>
                     <div class="product-meta">
-                        <strong>Shape:</strong> Medium Almond<br>
-                        <strong>Finish:</strong> Glossy
+                        <strong>Includes:</strong> 10 Press-On Nails<br>
+                        <strong>Available Sizes:</strong> XS, S, M, L<br>
+                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
                     </div>
                 </div>
                 <div>
@@ -305,8 +358,9 @@
                     <h3>Champagne Luxe</h3>
                     <div class="product-desc">Timeless neutral elegance meets high-shine glamour. Features a flawless nude foundation adorned with shimmering crystal embellishments for special celebrations.</div>
                     <div class="product-meta">
-                        <strong>Shape:</strong> Medium Almond<br>
-                        <strong>Finish:</strong> High-Gloss & Rhinestones
+                        <strong>Includes:</strong> 10 Press-On Nails<br>
+                        <strong>Available Sizes:</strong> XS, S, M, L<br>
+                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Rhinestones
                     </div>
                 </div>
                 <div>
@@ -322,8 +376,9 @@
                     <h3>Pearl Ribbon</h3>
                     <div class="product-desc">A modern, coquette twist on a timeless icon. Reimagines the crisp French tip with delicate bow accents and soft creamy undertones.</div>
                     <div class="product-meta">
-                        <strong>Shape:</strong> Medium Almond<br>
-                        <strong>Finish:</strong> Glossy
+                        <strong>Includes:</strong> 10 Press-On Nails<br>
+                        <strong>Available Sizes:</strong> XS, S, M, L<br>
+                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
                     </div>
                 </div>
                 <div>
@@ -334,46 +389,90 @@
 
         </div>
 
-        <!-- Included Kit Section -->
-        <div id="included" class="section-title">What's Included</div>
+        <!-- Sizing Guide Section -->
+        <div id="sizing" class="section-title">Sizing Guide</div>
         <div class="info-box">
-            <p>Every Nilaria Beauty set includes a complete preparation prep box to guarantee up to 2 weeks of seamless wear:</p>
-            <ul>
-                <li><strong>24 Reusable Press-On Nails</strong> (Full size range for a guaranteed fit)</li>
-                <li><strong>Nail Adhesive Tabs</strong> (Perfect for short-term wear)</li>
-                <li><strong>Long-Wear Nail Glue</strong> (For 1–2 week application)</li>
-                <li><strong>Mini Nail File & Cuticle Stick</strong></li>
-                <li><strong>Alcohol Prep Pad</strong></li>
-            </ul>
+            <p><strong>Don't forget to choose your size!</strong> Measure the widest part of your natural nail bed using measuring tape or a strip of paper marked with a ruler.</p>
+            
+            <table class="size-table">
+                <thead>
+                    <tr>
+                        <th>Size</th>
+                        <th>Thumb</th>
+                        <th>Index</th>
+                        <th>Middle</th>
+                        <th>Ring</th>
+                        <th>Pinky</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>XS</strong></td>
+                        <td>14mm</td>
+                        <td>10mm</td>
+                        <td>11mm</td>
+                        <td>10mm</td>
+                        <td>7mm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>S</strong></td>
+                        <td>15mm</td>
+                        <td>11mm</td>
+                        <td>12mm</td>
+                        <td>11mm</td>
+                        <td>8mm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>M</strong></td>
+                        <td>16mm</td>
+                        <td>12mm</td>
+                        <td>13mm</td>
+                        <td>12mm</td>
+                        <td>9mm</td>
+                    </tr>
+                    <tr>
+                        <td><strong>L</strong></td>
+                        <td>17mm</td>
+                        <td>13mm</td>
+                        <td>14mm</td>
+                        <td>13mm</td>
+                        <td>10mm</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
 
-        <!-- Shipping & Payment Section -->
-        <div id="delivery" class="section-title">Shipping & Payment</div>
-        <div class="info-grid">
-            <div class="info-box">
-                <h3>📦 Delivery & Shipping</h3>
-                <p><strong>Standard Canadian Shipping:</strong> $5.00 Flat Rate (3–5 business days via Canada Post).</p>
-                <p><strong>Local Pickup:</strong> Available for local orders in Ontario.</p>
-                <p><strong>Processing Time:</strong> Orders are packaged and shipped within 1–2 business days.</p>
-            </div>
-
-            <div class="info-box">
-                <h3>💳 Easy Payment Methods</h3>
-                <p>We currently accept payments directly via:</p>
-                <ul>
-                    <li><strong>Interac e-Transfer</strong> (Send to <em>Nilariabeauty@gmail.com</em>)</li>
-                    <li><strong>PayPal</strong></li>
-                </ul>
-                <p><small>Once you click "Order via Email", simply let us know your address and preferred payment method!</small></p>
-            </div>
+        <!-- Included Prep Kit Section -->
+        <div id="included" class="section-title">What's Included</div>
+        <div class="info-box">
+            <p>Every Nilaria Beauty order includes <strong>10 Reusable Press-On Nails</strong> in your chosen size, along with a complete preparation kit:</p>
+            <ul>
+                <li><strong>Sheet of Nail Adhesive Tabs</strong> (for temporary / weekend wear)</li>
+                <li><strong>Long-Wear Nail Glue Tube</strong> (for 1–2 week application)</li>
+                <li><strong>75% Ethyl Alcohol Prep Pad</strong></li>
+                <li><strong>Wooden Cuticle Stick</strong></li>
+                <li><strong>Mini Blue Nail File</strong></li>
+            </ul>
         </div>
 
     </div>
 
+    <!-- Footer & Contact Section -->
     <footer id="contact">
-        <p><strong>NILARIA BEAUTY</strong></p>
-        <p>Contact & Inquiries: <a href="mailto:Nilariabeauty@gmail.com" style="color: var(--rose-gold);">Nilariabeauty@gmail.com</a></p>
-        <p>&copy; 2026 Nilaria Beauty. All rights reserved.</p>
+        <!-- Logo Image -->
+        <img src="FINAL FINAL LOGO.png" alt="Nilaria Beauty Logo" class="footer-logo" onerror="this.style.display='none'">
+        
+        <h3 style="font-family: 'Playfair Display', serif; color: var(--rose-gold); margin-bottom: 5px;">NILARIA BEAUTY</h3>
+        <p style="font-style: italic; margin-top: 0; color: var(--soft-gold);">✨ Luxury at Your Fingertips</p>
+
+        <div class="social-links">
+            <a href="https://instagram.com/nilariabeauty" target="_blank">📸 Instagram: @nilariabeauty</a> |
+            <a href="https://tiktok.com/@nilaria.beauty" target="_blank">🎵 TikTok: @nilaria.beauty</a> |
+            <a href="https://facebook.com/nilariabeauty" target="_blank">📘 Facebook: @nilariabeauty</a>
+        </div>
+
+        <p>Email Inquiries & Direct Orders: <a href="mailto:Nilariabeauty@gmail.com" style="color: var(--rose-gold); font-weight: bold;">Nilariabeauty@gmail.com</a></p>
+        <p style="font-size: 11px; opacity: 0.7;">&copy; 2026 Nilaria Beauty. All rights reserved.</p>
     </footer>
 
 </body>
