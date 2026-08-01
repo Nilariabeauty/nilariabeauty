@@ -1,24 +1,180 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  <meta http-equiv="Content-Style-Type" content="text/css">
-  <title></title>
-  <meta name="Generator" content="Cocoa HTML Writer">
-  <meta name="CocoaVersion" content="2685.6">
-  <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nilaria Beauty | Luxury Press-On Nails</title>
+    <style>
+        :root {
+            --bg-color: #F7ECE1;
+            --accent-color: #C58B7E;
+            --text-color: #4A3E3D;
+            --card-bg: #FFFFFF;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: var(--card-bg);
+            text-align: center;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        header h1 {
+            color: var(--accent-color);
+            letter-spacing: 3px;
+            margin: 0;
+            font-size: 28px;
+        }
+
+        nav a {
+            margin: 0 15px;
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+        }
+
+        .hero h2 {
+            font-size: 36px;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+            padding: 20px;
+        }
+
+        .product-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            align-items: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        }
+
+        .product-img {
+            flex: 1 1 300px;
+            background-color: #E8D3C5;
+            height: 250px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-weight: bold;
+        }
+
+        .product-details {
+            flex: 1 1 300px;
+        }
+
+        .price {
+            font-size: 24px;
+            color: var(--accent-color);
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 15px;
+        }
+
+        .btn:hover {
+            opacity: 0.9;
+        }
+
+        .section {
+            background: var(--card-bg);
+            padding: 30px;
+            margin-top: 30px;
+            border-radius: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            opacity: 0.7;
+        }
+    </style>
 </head>
 <body>
-<p class="p1">&lt;!DOCTYPE html&gt;</p>
-<p class="p1">&lt;html lang="en"&gt;</p>
-<p class="p1">&lt;head&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>...</p>
-<p class="p1">&lt;/head&gt;</p>
-<p class="p1">&lt;body&gt;</p>
-<p class="p1"><span class="Apple-converted-space">  </span>...</p>
-<p class="p1">&lt;/body&gt;</p>
-<p class="p1">&lt;/html&gt;</p>
+
+    <header>
+        <h1>NILARIA BEAUTY</h1>
+        <nav>
+            <a href="#shop">Shop</a>
+            <a href="#guide">How to Apply</a>
+            <a href="#about">About Us</a>
+        </nav>
+    </header>
+
+    <div class="hero">
+        <h2>Luxury Nails Made Effortless</h2>
+        <p>Salon-inspired luxury press-on nails from the comfort of home.</p>
+    </div>
+
+    <div class="container">
+        <!-- Shop Section -->
+        <div id="shop" class="product-card">
+            <div class="product-img">Nilaria Press-On Set</div>
+            <div class="product-details">
+                <h3>Signature Press-On Nail Set</h3>
+                <p>Reusable, durable, and lightweight. Perfect fit guaranteed.</p>
+                <p><strong>Includes:</strong> 24 Nails, Mini File, Cuticle Stick, Prep Pad & Logo Card.</p>
+                <div class="price">$35.00 CAD</div>
+                <a href="mailto:nilariabeauty@gmail.com?subject=Order Request" class="btn">Order via Email</a>
+            </div>
+        </div>
+
+        <!-- Application Guide -->
+        <div id="guide" class="section">
+            <h3>How to Apply</h3>
+            <ol>
+                <li>Prep natural nails: push cuticles back gently.</li>
+                <li>Buff the shine off your natural nails and wipe clean with the alcohol prep pad.</li>
+                <li>Select the correct nail size for each finger.</li>
+                <li>Apply adhesive, align press-on with your cuticle line, and hold firmly for 30 seconds.</li>
+            </ol>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="section">
+            <h3>About Nilaria Beauty</h3>
+            <p>Nilaria Beauty was created to bring elegant, salon-inspired nails to you with maximum convenience. We focus on luxury design, quality, and self-care made effortless.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Nilaria Beauty. All rights reserved. | Contact: nilariabeauty@gmail.com</p>
+    </footer>
+
 </body>
 </html>
