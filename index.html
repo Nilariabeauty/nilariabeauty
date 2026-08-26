@@ -133,7 +133,26 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
+.slider {
+  width: 100%;
+  height: 250px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 8px;
+  scrollbar-width: thin;
+}
 
+.slides {
+  display: flex;
+  height: 100%;
+}
+
+.slides img {
+  min-width: 100%;
+  height: 100%;
+  object-fit: cover;
+  scroll-snap-align: start;
+}
         .product-card {
             background-color: var(--card-bg);
             border: 1px solid var(--warm-nude);
@@ -296,98 +315,108 @@
         <div id="shop" class="section-title">Nail Collections</div>
         
         <div class="grid">
-            
-            <!-- Item 1 -->
-            <div class="product-card">
-                <div>
-                    <img src="golden-matcha-1/blushing-butterfly-1.jpg" alt="Golden Matcha" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
-                    <h3>Golden Mocha</h3>
-                    <div class="product-desc">Indulge in warm caramel tones, soft nude bases, and delicate molten gold accents designed to capture the light for an effortless, everyday luxury look.</div>
-                    <div class="product-meta">
-                        <strong>Includes:</strong> 10 Press-On Nails<br>
-                        <strong>Available Sizes:</strong> XS, S, M, L<br>
-                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
-                    </div>
-                </div>
-                <div>
-                    <div class="price">$19.99 CAD</div>
-                    <a href="mailto:Nilariabeauty@gmail.com?subject=Order Request: Golden Mocha" class="btn">Order via Email</a>
-                </div>
-            </div>
 
-            <!-- Item 2 -->
-            <div class="product-card">
-                <div>
-                   <img src="lavender-bloom-1/blushing-butterfly-1.jpg" alt="Lavender Bloom" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
-                    <h3>Lavender Bloom</h3>
-                    <div class="product-desc">Soft, romantic, and dreamy. Lavender Bloom pairs delicate lilac hues with hand-crafted floral artistry for a sweet, ultra-feminine finish.</div>
-                    <div class="product-meta">
-                        <strong>Includes:</strong> 10 Press-On Nails<br>
-                        <strong>Available Sizes:</strong> XS, S, M, L<br>
-                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
-                    </div>
-                </div>
-                <div>
-                    <div class="price">$19.99 CAD</div>
-                    <a href="mailto:Nilariabeauty@gmail.com?subject=Order Request: Lavender Bloom" class="btn">Order via Email</a>
-                </div>
-            </div>
+  <!-- 1. Golden Matcha -->
+  <div class="product-card">
+    <div class="slider">
+      <div class="slides">
+        <img src="golden-matcha-1/golden-matcha 1.jpg" alt="Golden Matcha 1">
+        <img src="golden-matcha-1/golden-matcha 2.jpeg" alt="Golden Matcha 2">
+        <img src="golden-matcha-1/golden-matcha 3.jpeg" alt="Golden Matcha 3">
+      </div>
+    </div>
+    <h3>Golden Matcha</h3>
+    <p class="product-desc">Indulge in warm caramel tones, soft nude bases, and delicate molten gold accents designed to capture the light for an effortless, everyday luxury look.</p>
+    <div class="product-meta">
+      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+    </div>
+    <div class="price">$19.99 CAD</div>
+    <button class="order-btn">ORDER VIA EMAIL</button>
+  </div>
 
-            <!-- Item 3 -->
-            <div class="product-card">
-                <div>
-                  <img src="blushing-butterfly-1/blushing-butterfly-1.jpg" alt="Blushing Butterfly" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
-                    <h3>Blushing Butterfly</h3>
-                    <div class="product-desc">Flutter into whimsical elegance with soft petal pinks blending into ethereal lavender, finished with intricate butterfly wings that capture an enchanting radiance.</div>
-                    <div class="product-meta">
-                        <strong>Includes:</strong> 10 Press-On Nails<br>
-                        <strong>Available Sizes:</strong> XS, S, M, L<br>
-                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
-                    </div>
-                </div>
-                <div>
-                    <div class="price">$19.99 CAD</div>
-                    <a href="mailto:Nilariabeauty@gmail.com?subject=Order Request: Blushing Butterfly" class="btn">Order via Email</a>
-                </div>
-            </div>
+  <!-- 2. Lavender Bloom -->
+  <div class="product-card">
+    <div class="slider">
+      <div class="slides">
+        <img src="lavender-bloom-1/lavender-bloom 1.jpg" alt="Lavender Bloom 1">
+        <img src="lavender-bloom-1/lavender-bloom 2.jpeg" alt="Lavender Bloom 2">
+        <img src="lavender-bloom-1/lavender-bloom 3.jpeg" alt="Lavender Bloom 3">
+      </div>
+    </div>
+    <h3>Lavender Bloom</h3>
+    <p class="product-desc">Soft, romantic, and dreamy. Lavender Bloom pairs delicate lilac hues with hand-crafted floral artistry for a sweet, ultra-feminine finish.</p>
+    <div class="product-meta">
+      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+    </div>
+    <div class="price">$19.99 CAD</div>
+    <button class="order-btn">ORDER VIA EMAIL</button>
+  </div>
 
-            <!-- Item 4 -->
-            <div class="product-card">
-                <div>
-                   <img src="champagne-luxe-1/blushing-butterfly-1.jpg" alt="Champagne Luxe" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
-                    <h3>Champagne Luxe</h3>
-                    <div class="product-desc">Timeless neutral elegance meets high-shine glamour. Features a flawless nude foundation adorned with shimmering crystal embellishments for special celebrations.</div>
-                    <div class="product-meta">
-                        <strong>Includes:</strong> 10 Press-On Nails<br>
-                        <strong>Available Sizes:</strong> XS, S, M, L<br>
-                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Rhinestones
-                    </div>
-                </div>
-                <div>
-                    <div class="price">$19.99 CAD</div>
-                    <a href="mailto:Nilariabeauty@gmail.com?subject=Order Request: Champagne Luxe" class="btn">Order via Email</a>
-                </div>
-            </div>
+  <!-- 3. Blushing Butterfly -->
+  <div class="product-card">
+    <div class="slider">
+      <div class="slides">
+        <img src="blushing-butterfly-1/blushing-butterfly 1.jpg" alt="Blushing Butterfly 1">
+        <img src="blushing-butterfly-1/blushing-butterfly 2.jpeg" alt="Blushing Butterfly 2">
+        <img src="blushing-butterfly-1/blushing-butterfly 3.jpeg" alt="Blushing Butterfly 3">
+      </div>
+    </div>
+    <h3>Blushing Butterfly</h3>
+    <p class="product-desc">Flutter into whimsical elegance with soft petal pinks blending into ethereal lavender, finished with intricate butterfly wings that capture an enchanting radiance.</p>
+    <div class="product-meta">
+      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+    </div>
+    <div class="price">$19.99 CAD</div>
+    <button class="order-btn">ORDER VIA EMAIL</button>
+  </div>
 
-            <!-- Item 5 -->
-            <div class="product-card">
-                <div>
-                   <img src="pearl-ribbon-1/blushing-butterfly-1.jpg" alt="Pearl Ribbon" style="width: 100%; height: 220px; object-fit: cover; border-radius: 8px;">
-                    <h3>Pearl Ribbon</h3>
-                    <div class="product-desc">A modern, coquette twist on a timeless icon. Reimagines the crisp French tip with delicate bow accents and soft creamy undertones.</div>
-                    <div class="product-meta">
-                        <strong>Includes:</strong> 10 Press-On Nails<br>
-                        <strong>Available Sizes:</strong> XS, S, M, L<br>
-                        <strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy
-                    </div>
-                </div>
-                <div>
-                    <div class="price">$19.99 CAD</div>
-                    <a href="mailto:Nilariabeauty@gmail.com?subject=Order Request: Pearl Ribbon" class="btn">Order via Email</a>
-                </div>
-            </div>
+  <!-- 4. Champagne Luxe -->
+  <div class="product-card">
+    <div class="slider">
+      <div class="slides">
+        <img src="champagne-luxe-1/champagne-luxe 1.jpg" alt="Champagne Luxe 1">
+        <img src="champagne-luxe-1/champagne-luxe 2.jpeg" alt="Champagne Luxe 2">
+        <img src="champagne-luxe-1/champagne-luxe 3.jpeg" alt="Champagne Luxe 3">
+      </div>
+    </div>
+    <h3>Champagne Luxe</h3>
+    <p class="product-desc">Timeless neutral elegance meets high-shine glamour. Features a flawless nude foundation adorned with shimmering crystal embellishments for special celebrations.</p>
+    <div class="product-meta">
+      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Rhinestones</p>
+    </div>
+    <div class="price">$19.99 CAD</div>
+    <button class="order-btn">ORDER VIA EMAIL</button>
+  </div>
 
-        </div>
+  <!-- 5. Pearl Ribbon -->
+  <div class="product-card">
+    <div class="slider">
+      <div class="slides">
+        <img src="pearl-ribbon-1/pearl-ribbon 1.jpg" alt="Pearl Ribbon 1">
+        <img src="pearl-ribbon-1/pearl-ribbon 2.jpeg" alt="Pearl Ribbon 2">
+        <img src="pearl-ribbon-1/pearl-ribbon 3.jpeg" alt="Pearl Ribbon 3">
+      </div>
+    </div>
+    <h3>Pearl Ribbon</h3>
+    <p class="product-desc">A modern, coquette twist on a timeless icon. Reimagines the crisp French tip with delicate bow accents and soft creamy undertones.</p>
+    <div class="product-meta">
+      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+    </div>
+    <div class="price">$19.99 CAD</div>
+    <button class="order-btn">ORDER VIA EMAIL</button>
+  </div>
+
+</div>
 
         <!-- Sizing Guide Section -->
         <div id="sizing" class="section-title">Sizing Guide</div>
