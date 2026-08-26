@@ -134,12 +134,17 @@
             gap: 25px;
         }
 .slider {
+  position: relative;
   width: 100%;
   height: 250px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   border-radius: 8px;
-  scrollbar-width: thin;
+  scrollbar-width: none; /* Hide scrollbar for clean UI */
+}
+
+.slider::-webkit-scrollbar {
+  display: none;
 }
 
 .slides {
@@ -152,6 +157,22 @@
   height: 100%;
   object-fit: cover;
   scroll-snap-align: start;
+}
+
+/* Semi-transparent overlay pill prompting users to swipe */
+.swipe-hint {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.45);
+  color: #ffffff;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+}
 }
         .product-card {
             background-color: var(--card-bg);
@@ -314,16 +335,17 @@
         <!-- Shop Section -->
         <div id="shop" class="section-title">Nail Collections</div>
         
-        <div class="grid">
+       <div class="grid">
 
-  <!-- 1. Golden Matcha -->
+  <!-- 1. Golden Matcha (Displays #3 first: golden-matcha 3.jpeg) -->
   <div class="product-card">
     <div class="slider">
       <div class="slides">
+        <img src="golden-matcha-1/golden-matcha 3.jpeg" alt="Golden Matcha 3">
         <img src="golden-matcha-1/golden-matcha 1.jpg" alt="Golden Matcha 1">
         <img src="golden-matcha-1/golden-matcha 2.jpeg" alt="Golden Matcha 2">
-        <img src="golden-matcha-1/golden-matcha 3.jpeg" alt="Golden Matcha 3">
       </div>
+      <div class="swipe-hint">‹ Swipe ›</div>
     </div>
     <h3>Golden Matcha</h3>
     <p class="product-desc">Indulge in warm caramel tones, soft nude bases, and delicate molten gold accents designed to capture the light for an effortless, everyday luxury look.</p>
@@ -336,14 +358,15 @@
     <button class="order-btn">ORDER VIA EMAIL</button>
   </div>
 
-  <!-- 2. Lavender Bloom -->
+  <!-- 2. Lavender Bloom (Displays #3 first: lavender-bloom 3.jpeg) -->
   <div class="product-card">
     <div class="slider">
       <div class="slides">
+        <img src="lavender-bloom-1/lavender-bloom 3.jpeg" alt="Lavender Bloom 3">
         <img src="lavender-bloom-1/lavender-bloom 1.jpg" alt="Lavender Bloom 1">
         <img src="lavender-bloom-1/lavender-bloom 2.jpeg" alt="Lavender Bloom 2">
-        <img src="lavender-bloom-1/lavender-bloom 3.jpeg" alt="Lavender Bloom 3">
       </div>
+      <div class="swipe-hint">‹ Swipe ›</div>
     </div>
     <h3>Lavender Bloom</h3>
     <p class="product-desc">Soft, romantic, and dreamy. Lavender Bloom pairs delicate lilac hues with hand-crafted floral artistry for a sweet, ultra-feminine finish.</p>
@@ -356,14 +379,15 @@
     <button class="order-btn">ORDER VIA EMAIL</button>
   </div>
 
-  <!-- 3. Blushing Butterfly -->
+  <!-- 3. Blushing Butterfly (Displays #2 first: blushing-butterfly 2.jpeg) -->
   <div class="product-card">
     <div class="slider">
       <div class="slides">
-        <img src="blushing-butterfly-1/blushing-butterfly 1.jpg" alt="Blushing Butterfly 1">
         <img src="blushing-butterfly-1/blushing-butterfly 2.jpeg" alt="Blushing Butterfly 2">
+        <img src="blushing-butterfly-1/blushing-butterfly 1.jpg" alt="Blushing Butterfly 1">
         <img src="blushing-butterfly-1/blushing-butterfly 3.jpeg" alt="Blushing Butterfly 3">
       </div>
+      <div class="swipe-hint">‹ Swipe ›</div>
     </div>
     <h3>Blushing Butterfly</h3>
     <p class="product-desc">Flutter into whimsical elegance with soft petal pinks blending into ethereal lavender, finished with intricate butterfly wings that capture an enchanting radiance.</p>
@@ -376,14 +400,15 @@
     <button class="order-btn">ORDER VIA EMAIL</button>
   </div>
 
-  <!-- 4. Champagne Luxe -->
+  <!-- 4. Champagne Luxe (Displays #3 first: champagne-luxe 3.jpeg) -->
   <div class="product-card">
     <div class="slider">
       <div class="slides">
+        <img src="champagne-luxe-1/champagne-luxe 3.jpeg" alt="Champagne Luxe 3">
         <img src="champagne-luxe-1/champagne-luxe 1.jpg" alt="Champagne Luxe 1">
         <img src="champagne-luxe-1/champagne-luxe 2.jpeg" alt="Champagne Luxe 2">
-        <img src="champagne-luxe-1/champagne-luxe 3.jpeg" alt="Champagne Luxe 3">
       </div>
+      <div class="swipe-hint">‹ Swipe ›</div>
     </div>
     <h3>Champagne Luxe</h3>
     <p class="product-desc">Timeless neutral elegance meets high-shine glamour. Features a flawless nude foundation adorned with shimmering crystal embellishments for special celebrations.</p>
@@ -396,14 +421,15 @@
     <button class="order-btn">ORDER VIA EMAIL</button>
   </div>
 
-  <!-- 5. Pearl Ribbon -->
+  <!-- 5. Pearl Ribbon (Displays #3 first: pearl-ribbon 3.jpeg) -->
   <div class="product-card">
     <div class="slider">
       <div class="slides">
+        <img src="pearl-ribbon-1/pearl-ribbon 3.jpeg" alt="Pearl Ribbon 3">
         <img src="pearl-ribbon-1/pearl-ribbon 1.jpg" alt="Pearl Ribbon 1">
         <img src="pearl-ribbon-1/pearl-ribbon 2.jpeg" alt="Pearl Ribbon 2">
-        <img src="pearl-ribbon-1/pearl-ribbon 3.jpeg" alt="Pearl Ribbon 3">
       </div>
+      <div class="swipe-hint">‹ Swipe ›</div>
     </div>
     <h3>Pearl Ribbon</h3>
     <p class="product-desc">A modern, coquette twist on a timeless icon. Reimagines the crisp French tip with delicate bow accents and soft creamy undertones.</p>
