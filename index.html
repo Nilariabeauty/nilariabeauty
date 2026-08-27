@@ -10,6 +10,118 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
+        /* Cart Drawer Styles */
+#cart-toggle-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: var(--rose-gold, #c59b27);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.cart-drawer {
+  position: fixed;
+  top: 0;
+  right: -350px;
+  width: 320px;
+  height: 100%;
+  background: #ffffff;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  transition: right 0.3s ease;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.cart-drawer.active {
+  right: 0;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.cart-items-container {
+  flex: 1;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+  border-bottom: 1px dashed #f0f0f0;
+  padding-bottom: 10px;
+}
+
+.qty-controls button {
+  background: #f0f0f0;
+  border: none;
+  padding: 2px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.cart-footer {
+  border-top: 1px solid #eee;
+  padding-top: 15px;
+}
+
+.checkout-btn {
+  width: 100%;
+  background: #4a3b32;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+/* Reviews Styling */
+.reviews-section {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.review-form-card {
+  background: #faf2f2;
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 30px;
+}
+
+.review-form-card input, .review-form-card select, .review-form-card textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.verified-badge {
+  background: #e1f5fe;
+  color: #0288d1;
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 10px;
+  margin-left: 8px;
+}
         :root {
             --rose-gold: #C58B7E;
             --soft-gold: #D4AF37;
@@ -20,7 +132,55 @@
             --text-dark: #2D2424; /* High contrast text */
             --card-bg: #FFFFFF;
         }
+<!-- Floating Cart Button -->
+<button id="cart-toggle-btn" onclick="toggleCart()">
+  🛒 Cart (<span id="cart-count">0</span>)
+</button>
 
+<!-- Slide-out Shopping Cart Drawer -->
+<div id="cart-drawer" class="cart-drawer">
+  <div class="cart-header">
+    <h3>Your Order</h3>
+    <button onclick="toggleCart()" class="close-btn">&times;</button>
+  </div>
+  <div id="cart-items" class="cart-items-container">
+    <p class="empty-msg">Your cart is currently empty.</p>
+  </div>
+  <div class="cart-footer">
+    <div class="cart-total">Total: $<span id="cart-total-price">0.00</span> CAD</div>
+    <button onclick="sendCartEmail()" class="checkout-btn">Email Complete Order</button>
+  </div>
+</div>
+
+<!-- Verified Reviews Section -->
+<section class="reviews-section">
+  <h2>Customer Reviews</h2>
+  
+  <!-- Review Submission Form -->
+  <div class="review-form-card">
+    <h3>Leave a Review</h3>
+    <form id="review-form" onsubmit="submitVerifiedReview(event)">
+      <input type="text" id="review-name" placeholder="Your Name" required>
+      <input type="text" id="review-order-id" placeholder="Order ID (e.g., #NB-1042)" required>
+      <select id="review-rating" required>
+        <option value="">Select Rating</option>
+        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+        <option value="3">⭐⭐⭐ (3/5)</option>
+        <option value="2">⭐⭐ (2/5)</option>
+        <option value="1">⭐ (1/5)</option>
+      </select>
+      <textarea id="review-text" rows="3" placeholder="Write your review here..." required></textarea>
+      <button type="submit" class="submit-review-btn">Submit Review</button>
+      <p id="review-status-msg"></p>
+    </form>
+  </div>
+
+  <!-- Displayed Reviews Container -->
+  <div id="reviews-display-list" class="reviews-grid">
+    <!-- Reviews will load dynamically here -->
+  </div>
+</section>
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--soft-ivory);
@@ -307,7 +467,165 @@
         }
     </style>
 </head>
-<body>
+<script>
+    <!-- Step 1 & 2 HTML content goes up here -->
+
+  <!-- Step 3: Paste JavaScript here -->
+  <script>
+    let cart = [];
+
+    // Toggle Cart Open/Close
+    function toggleCart() {
+      document.getElementById('cart-drawer').classList.toggle('active');
+    }
+
+    // Add Item to Cart
+    function addSingleToCart(title, price, buttonElement) {
+      const card = buttonElement.closest('.product-card');
+      const size = card.querySelector('.size-select').value;
+      
+      const existingItem = cart.find(item => item.title === title && item.size === size);
+      if (existingItem) {
+        existingItem.qty += 1;
+      } else {
+        cart.push({ title: title, price: price, size: size, qty: 1 });
+      }
+      updateCartUI();
+      toggleCart();
+    }
+
+    // Update Cart UI
+    function updateCartUI() {
+      const cartContainer = document.getElementById('cart-items');
+      const cartCount = document.getElementById('cart-count');
+      const cartTotal = document.getElementById('cart-total-price');
+      
+      cartContainer.innerHTML = '';
+      let total = 0;
+      let totalCount = 0;
+
+      if (cart.length === 0) {
+        cartContainer.innerHTML = '<p class="empty-msg">Your cart is currently empty.</p>';
+      } else {
+        cart.forEach((item, index) => {
+          total += item.price * item.qty;
+          totalCount += item.qty;
+          cartContainer.innerHTML += `
+            <div class="cart-item">
+              <div>
+                <strong>${item.title}</strong><br>
+                <small>Size: ${item.size} | $${item.price.toFixed(2)} CAD</small>
+              </div>
+              <div class="qty-controls">
+                <button onclick="changeQty(${index}, -1)">-</button>
+                <span>${item.qty}</span>
+                <button onclick="changeQty(${index}, 1)">+</button>
+              </div>
+            </div>
+          `;
+        });
+      }
+
+      cartCount.innerText = totalCount;
+      cartTotal.innerText = total.toFixed(2);
+    }
+
+    // Change Quantity in Cart
+    function changeQty(index, change) {
+      cart[index].qty += change;
+      if (cart[index].qty <= 0) {
+        cart.splice(index, 1);
+      }
+      updateCartUI();
+    }
+
+    // Send Direct Email for Single Item
+    function sendDirectEmail(title, price, buttonElement) {
+      const card = buttonElement.closest('.product-card');
+      const size = card.querySelector('.size-select').value;
+      
+      const subject = encodeURIComponent(`New Order Request: ${title}`);
+      const body = encodeURIComponent(
+        `Hello Nilaria Beauty,\n\nI would like to place an order for:\n\n` +
+        `- Item: ${title}\n` +
+        `- Size: ${size}\n` +
+        `- Quantity: 1\n` +
+        `- Price: $${price.toFixed(2)} CAD\n\n` +
+        `Shipping / Delivery details:\n[Please provide your name, shipping address, or if this is for Local Pickup at 5191 Dundas St W]`
+      );
+      window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Send Email for Full Cart
+    function sendCartEmail() {
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      let itemDetails = "";
+      let total = 0;
+
+      cart.forEach((item, i) => {
+        const itemSubtotal = item.price * item.qty;
+        total += itemSubtotal;
+        itemDetails += `${i + 1}. ${item.title} | Size: ${item.size} | Qty: ${item.qty} | Subtotal: $${itemSubtotal.toFixed(2)} CAD\n`;
+      });
+
+      const subject = encodeURIComponent("New Custom Order - Nilaria Beauty Cart");
+      const body = encodeURIComponent(
+        `Hello Nilaria Beauty,\n\nI would like to order the following items from my cart:\n\n` +
+        `${itemDetails}\n` +
+        `Total Estimated Price: $${total.toFixed(2)} CAD\n\n` +
+        `Customer Info:\n` +
+        `- Name:\n` +
+        `- Preferred Fulfillment: [Delivery / Pickup at 5191 Dundas St W]\n` +
+        `- Shipping Address (if applicable):\n`
+      );
+
+      window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
+    }
+
+    // Verified Order Review Handler
+    function submitVerifiedReview(event) {
+      event.preventDefault();
+      const name = document.getElementById('review-name').value;
+      const orderId = document.getElementById('review-order-id').value.trim();
+      const rating = document.getElementById('review-rating').value;
+      const text = document.getElementById('review-text').value;
+      const statusMsg = document.getElementById('review-status-msg');
+
+      if (!orderId.toUpperCase().startsWith('#NB-') || orderId.length < 6) {
+        statusMsg.style.color = 'red';
+        statusMsg.innerText = 'Invalid Order ID. Reviews are restricted to verified buyers (Format: #NB-XXXX).';
+        return;
+      }
+
+      statusMsg.style.color = 'green';
+      statusMsg.innerText = 'Thank you! Your verified review has been submitted for approval.';
+
+      const displayList = document.getElementById('reviews-display-list');
+      const stars = '⭐'.repeat(Number(rating));
+      
+      displayList.innerHTML += `
+        <div class="review-card">
+          <div class="review-header">
+            <strong>${name}</strong> <span class="verified-badge">✔ Verified Buyer</span>
+          </div>
+          <div class="stars">${stars}</div>
+          <p>${text}</p>
+          <small>Order Ref: ${orderId}</small>
+        </div>
+      `;
+
+      document.getElementById('review-form').reset();
+    }
+  </script>
+
+</body>
+</html>
+</script>
+    <body>
 
     <header>
         <div class="logo-title">NILARIA</div>
@@ -355,7 +673,23 @@
       <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
     </div>
     <div class="price">$19.99 CAD</div>
-    <button class="order-btn">ORDER VIA EMAIL</button>
+    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
+<div class="product-options">
+  <label>Size: 
+    <select class="size-select">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="Custom">Custom</option>
+    </select>
+  </label>
+</div>
+
+<div class="card-action-row">
+  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
+  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+</div></button>
   </div>
 
   <!-- 2. Lavender Bloom (Displays #3 first: lavender-bloom 3.jpeg) -->
@@ -376,7 +710,23 @@
       <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
     </div>
     <div class="price">$19.99 CAD</div>
-    <button class="order-btn">ORDER VIA EMAIL</button>
+    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
+<div class="product-options">
+  <label>Size: 
+    <select class="size-select">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="Custom">Custom</option>
+    </select>
+  </label>
+</div>
+
+<div class="card-action-row">
+  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
+  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+</div></button>
   </div>
 
   <!-- 3. Blushing Butterfly (Displays #2 first: blushing-butterfly 2.jpeg) -->
@@ -397,7 +747,23 @@
       <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
     </div>
     <div class="price">$19.99 CAD</div>
-    <button class="order-btn">ORDER VIA EMAIL</button>
+    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
+<div class="product-options">
+  <label>Size: 
+    <select class="size-select">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="Custom">Custom</option>
+    </select>
+  </label>
+</div>
+
+<div class="card-action-row">
+  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
+  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+</div></button>
   </div>
 
   <!-- 4. Champagne Luxe (Displays #3 first: champagne-luxe 3.jpeg) -->
@@ -418,7 +784,23 @@
       <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Rhinestones</p>
     </div>
     <div class="price">$19.99 CAD</div>
-    <button class="order-btn">ORDER VIA EMAIL</button>
+    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
+<div class="product-options">
+  <label>Size: 
+    <select class="size-select">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="Custom">Custom</option>
+    </select>
+  </label>
+</div>
+
+<div class="card-action-row">
+  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
+  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+</div></button>
   </div>
 
   <!-- 5. Pearl Ribbon (Displays #3 first: pearl-ribbon 3.jpeg) -->
@@ -439,7 +821,23 @@
       <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
     </div>
     <div class="price">$19.99 CAD</div>
-    <button class="order-btn">ORDER VIA EMAIL</button>
+    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
+<div class="product-options">
+  <label>Size: 
+    <select class="size-select">
+      <option value="XS">XS</option>
+      <option value="S">S</option>
+      <option value="M">M</option>
+      <option value="L">L</option>
+      <option value="Custom">Custom</option>
+    </select>
+  </label>
+</div>
+
+<div class="card-action-row">
+  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
+  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+</div></button>
   </div>
 
 </div>
