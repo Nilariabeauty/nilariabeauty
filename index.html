@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nilaria Beauty | Luxury Press-On Nails</title>
-    <!-- Montserrat & Playfair Display Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
     <style>
         :root {
             --rose-gold: #C58B7E;
@@ -487,19 +488,22 @@
 
         .social-links {
             margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
         }
 
         .social-links a {
-            display: inline-block;
-            margin: 0 10px;
             color: var(--text-dark);
+            font-size: 26px;
+            transition: color 0.3s ease, transform 0.2s ease;
             text-decoration: none;
-            font-weight: 600;
-            font-size: 14px;
         }
 
         .social-links a:hover {
             color: var(--rose-gold);
+            transform: scale(1.15);
         }
 
         .policy-links-footer {
@@ -542,12 +546,10 @@
 
     <div class="container">
         
-        <!-- Shop Section -->
         <div id="shop" class="section-title">Nail Collections</div>
         
         <div class="grid">
 
-            <!-- 1. Golden Matcha -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -564,7 +566,7 @@
                     <p><strong>Available Sizes:</strong> XS, S, M, L</p>
                     <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
                 </div>
-                <div class="price">$19.99 CAD</div>
+                <div class="price">$25.99 CAD</div>
                 <div class="product-options">
                     <label>Size: 
                         <select class="size-select">
@@ -576,12 +578,11 @@
                     </label>
                 </div>
                 <div class="card-action-row">
-                    <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
-                    <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+                    <button onclick="addSingleToCart('Golden Matcha', 25.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Golden Matcha', 25.99, this)">Order Directly</button>
                 </div>
             </div>
 
-            <!-- 2. Lavender Bloom -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -598,7 +599,7 @@
                     <p><strong>Available Sizes:</strong> XS, S, M, L</p>
                     <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
                 </div>
-                <div class="price">$19.99 CAD</div>
+                <div class="price">$21.99 CAD</div>
                 <div class="product-options">
                     <label>Size: 
                         <select class="size-select">
@@ -610,12 +611,11 @@
                     </label>
                 </div>
                 <div class="card-action-row">
-                    <button onclick="addSingleToCart('Lavender Bloom', 19.99, this)">Add to Cart</button>
-                    <button onclick="sendDirectEmail('Lavender Bloom', 19.99, this)">Order Directly</button>
+                    <button onclick="addSingleToCart('Lavender Bloom', 21.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Lavender Bloom', 21.99, this)">Order Directly</button>
                 </div>
             </div>
 
-            <!-- 3. Blushing Butterfly -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -632,7 +632,7 @@
                     <p><strong>Available Sizes:</strong> XS, S, M, L</p>
                     <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
                 </div>
-                <div class="price">$19.99 CAD</div>
+                <div class="price">$29.99 CAD</div>
                 <div class="product-options">
                     <label>Size: 
                         <select class="size-select">
@@ -644,12 +644,11 @@
                     </label>
                 </div>
                 <div class="card-action-row">
-                    <button onclick="addSingleToCart('Blushing Butterfly', 19.99, this)">Add to Cart</button>
-                    <button onclick="sendDirectEmail('Blushing Butterfly', 19.99, this)">Order Directly</button>
+                    <button onclick="addSingleToCart('Blushing Butterfly', 29.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Blushing Butterfly', 29.99, this)">Order Directly</button>
                 </div>
             </div>
 
-            <!-- 4. Champagne Luxe -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -683,7 +682,6 @@
                 </div>
             </div>
 
-            <!-- 5. Pearl Ribbon -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -700,7 +698,7 @@
                     <p><strong>Available Sizes:</strong> XS, S, M, L</p>
                     <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
                 </div>
-                <div class="price">$19.99 CAD</div>
+                <div class="price">$29.99 CAD</div>
                 <div class="product-options">
                     <label>Size: 
                         <select class="size-select">
@@ -712,14 +710,13 @@
                     </label>
                 </div>
                 <div class="card-action-row">
-                    <button onclick="addSingleToCart('Pearl Ribbon', 19.99, this)">Add to Cart</button>
-                    <button onclick="sendDirectEmail('Pearl Ribbon', 19.99, this)">Order Directly</button>
+                    <button onclick="addSingleToCart('Pearl Ribbon', 29.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Pearl Ribbon', 29.99, this)">Order Directly</button>
                 </div>
             </div>
 
         </div>
 
-        <!-- Sizing Guide Section -->
         <div id="sizing" class="section-title">Sizing Guide</div>
         <div class="info-box">
             <p><strong>Don't forget to choose your size!</strong> Measure the widest part of your natural nail bed using measuring tape or a strip of paper marked with a ruler.</p>
@@ -772,7 +769,6 @@
             </table>
         </div>
 
-        <!-- Included Prep Kit Section -->
         <div id="included" class="section-title">What's Included</div>
         <div class="info-box">
             <p>Every Nilaria Beauty order includes <strong>10 Reusable Press-On Nails</strong> in your chosen size, along with a complete preparation kit:</p>
@@ -785,7 +781,6 @@
             </ul>
         </div>
 
-        <!-- Verified Reviews Section -->
         <section id="reviews" class="reviews-section">
             <div class="section-title">Customer Reviews</div>
             
@@ -809,11 +804,9 @@
             </div>
 
             <div id="reviews-display-list" class="reviews-grid">
-                <!-- Reviews load here dynamically -->
-            </div>
+                </div>
         </section>
 
-        <!-- Privacy Policy Section -->
         <div id="privacy" class="section-title">Privacy Policy</div>
         <div class="policy-box">
             <p><em>Last Updated: August 26, 2026</em></p>
@@ -883,7 +876,6 @@
             Email: <a href="mailto:nilariabeauty@gmail.com" style="color: var(--rose-gold);">nilariabeauty@gmail.com</a></p>
         </div>
 
-        <!-- Returns & Refunds Policy Section -->
         <div id="returns" class="section-title">Returns & Refunds Policy</div>
         <div class="policy-box">
             <p><em>Last Updated: August 26, 2026</em></p>
@@ -960,12 +952,10 @@
 
     </div>
 
-    <!-- Floating Cart Button -->
     <button id="cart-toggle-btn" onclick="toggleCart()">
         🛒 Cart (<span id="cart-count">0</span>)
     </button>
 
-    <!-- Slide-out Shopping Cart Drawer -->
     <div id="cart-drawer" class="cart-drawer">
         <div class="cart-header">
             <h3>Your Order</h3>
@@ -980,7 +970,6 @@
         </div>
     </div>
 
-    <!-- Footer & Contact Section -->
     <footer id="contact">
         <img src="FINAL FINAL LOGO.png" alt="Nilaria Beauty Logo" class="footer-logo" onerror="this.style.display='none'">
         
@@ -988,9 +977,15 @@
         <p style="font-style: italic; margin-top: 0; color: var(--soft-gold);">✨ Luxury at Your Fingertips</p>
 
         <div class="social-links">
-            <a href="https://instagram.com/nilariabeauty" target="_blank">📸 Instagram: @nilariabeauty</a> |
-            <a href="https://tiktok.com/@nilaria.beauty" target="_blank">🎵 TikTok: @nilaria.beauty</a> |
-            <a href="https://facebook.com/nilariabeauty" target="_blank">📘 Facebook: @nilariabeauty</a>
+            <a href="https://instagram.com/nilariabeauty" target="_blank" aria-label="Instagram">
+                <i class="fa-brands fa-instagram"></i>
+            </a>
+            <a href="https://tiktok.com/@nilaria.beauty" target="_blank" aria-label="TikTok">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="https://facebook.com/nilariabeauty" target="_blank" aria-label="Facebook">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
         </div>
 
         <p>Email Inquiries & Direct Orders: <a href="mailto:Nilariabeauty@gmail.com" style="color: var(--rose-gold); font-weight: bold;">Nilariabeauty@gmail.com</a></p>
@@ -1002,7 +997,6 @@
         <p style="font-size: 11px; opacity: 0.7; margin-top: 15px;">&copy; 2026 Nilaria Beauty. All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript Logic -->
     <script>
         let cart = [];
 
