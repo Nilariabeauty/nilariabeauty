@@ -10,118 +10,6 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
     <style>
-        /* Cart Drawer Styles */
-#cart-toggle-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background: var(--rose-gold, #c59b27);
-  color: white;
-  border: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 1000;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-}
-
-.cart-drawer {
-  position: fixed;
-  top: 0;
-  right: -350px;
-  width: 320px;
-  height: 100%;
-  background: #ffffff;
-  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
-  transition: right 0.3s ease;
-  z-index: 1001;
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.cart-drawer.active {
-  right: 0;
-}
-
-.cart-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid #eee;
-  padding-bottom: 10px;
-}
-
-.cart-items-container {
-  flex: 1;
-  overflow-y: auto;
-  margin-top: 15px;
-}
-
-.cart-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  border-bottom: 1px dashed #f0f0f0;
-  padding-bottom: 10px;
-}
-
-.qty-controls button {
-  background: #f0f0f0;
-  border: none;
-  padding: 2px 8px;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.cart-footer {
-  border-top: 1px solid #eee;
-  padding-top: 15px;
-}
-
-.checkout-btn {
-  width: 100%;
-  background: #4a3b32;
-  color: #fff;
-  border: none;
-  padding: 12px;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-top: 10px;
-}
-
-/* Reviews Styling */
-.reviews-section {
-  max-width: 800px;
-  margin: 40px auto;
-  padding: 20px;
-}
-
-.review-form-card {
-  background: #faf2f2;
-  padding: 20px;
-  border-radius: 8px;
-  margin-bottom: 30px;
-}
-
-.review-form-card input, .review-form-card select, .review-form-card textarea {
-  width: 100%;
-  margin-bottom: 12px;
-  padding: 10px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-}
-
-.verified-badge {
-  background: #e1f5fe;
-  color: #0288d1;
-  font-size: 11px;
-  padding: 2px 6px;
-  border-radius: 10px;
-  margin-left: 8px;
-}
         :root {
             --rose-gold: #C58B7E;
             --soft-gold: #D4AF37;
@@ -129,58 +17,10 @@
             --warm-nude: #F2E6D9;
             --cream: #FFF6F1;
             --soft-ivory: #FEFAF6;
-            --text-dark: #2D2424; /* High contrast text */
+            --text-dark: #2D2424;
             --card-bg: #FFFFFF;
         }
-<!-- Floating Cart Button -->
-<button id="cart-toggle-btn" onclick="toggleCart()">
-  🛒 Cart (<span id="cart-count">0</span>)
-</button>
 
-<!-- Slide-out Shopping Cart Drawer -->
-<div id="cart-drawer" class="cart-drawer">
-  <div class="cart-header">
-    <h3>Your Order</h3>
-    <button onclick="toggleCart()" class="close-btn">&times;</button>
-  </div>
-  <div id="cart-items" class="cart-items-container">
-    <p class="empty-msg">Your cart is currently empty.</p>
-  </div>
-  <div class="cart-footer">
-    <div class="cart-total">Total: $<span id="cart-total-price">0.00</span> CAD</div>
-    <button onclick="sendCartEmail()" class="checkout-btn">Email Complete Order</button>
-  </div>
-</div>
-
-<!-- Verified Reviews Section -->
-<section class="reviews-section">
-  <h2>Customer Reviews</h2>
-  
-  <!-- Review Submission Form -->
-  <div class="review-form-card">
-    <h3>Leave a Review</h3>
-    <form id="review-form" onsubmit="submitVerifiedReview(event)">
-      <input type="text" id="review-name" placeholder="Your Name" required>
-      <input type="text" id="review-order-id" placeholder="Order ID (e.g., #NB-1042)" required>
-      <select id="review-rating" required>
-        <option value="">Select Rating</option>
-        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
-        <option value="4">⭐⭐⭐⭐ (4/5)</option>
-        <option value="3">⭐⭐⭐ (3/5)</option>
-        <option value="2">⭐⭐ (2/5)</option>
-        <option value="1">⭐ (1/5)</option>
-      </select>
-      <textarea id="review-text" rows="3" placeholder="Write your review here..." required></textarea>
-      <button type="submit" class="submit-review-btn">Submit Review</button>
-      <p id="review-status-msg"></p>
-    </form>
-  </div>
-
-  <!-- Displayed Reviews Container -->
-  <div id="reviews-display-list" class="reviews-grid">
-    <!-- Reviews will load dynamically here -->
-  </div>
-</section>
         body {
             font-family: 'Montserrat', sans-serif;
             background-color: var(--soft-ivory);
@@ -219,13 +59,16 @@
 
         nav {
             margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         nav a {
-            margin: 0 12px;
             color: var(--text-dark);
             text-decoration: none;
-            font-size: 13px;
+            font-size: 12px;
             letter-spacing: 1px;
             text-transform: uppercase;
             font-weight: 600;
@@ -278,7 +121,7 @@
             font-size: 26px;
             color: var(--rose-gold);
             letter-spacing: 2px;
-            margin: 40px 0 20px 0;
+            margin: 50px 0 20px 0;
             text-transform: uppercase;
         }
 
@@ -293,47 +136,47 @@
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 25px;
         }
-.slider {
-  position: relative;
-  width: 100%;
-  height: 250px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  border-radius: 8px;
-  scrollbar-width: none; /* Hide scrollbar for clean UI */
-}
 
-.slider::-webkit-scrollbar {
-  display: none;
-}
+        .slider {
+            position: relative;
+            width: 100%;
+            height: 250px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            border-radius: 8px;
+            scrollbar-width: none;
+        }
 
-.slides {
-  display: flex;
-  height: 100%;
-}
+        .slider::-webkit-scrollbar {
+            display: none;
+        }
 
-.slides img {
-  min-width: 100%;
-  height: 100%;
-  object-fit: cover;
-  scroll-snap-align: start;
-}
+        .slides {
+            display: flex;
+            height: 100%;
+        }
 
-/* Semi-transparent overlay pill prompting users to swipe */
-.swipe-hint {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  background: rgba(0, 0, 0, 0.45);
-  color: #ffffff;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  pointer-events: none;
-  backdrop-filter: blur(2px);
-}
-}
+        .slides img {
+            min-width: 100%;
+            height: 100%;
+            object-fit: cover;
+            scroll-snap-align: start;
+        }
+
+        .swipe-hint {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.45);
+            color: #ffffff;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            pointer-events: none;
+            backdrop-filter: blur(2px);
+        }
+
         .product-card {
             background-color: var(--card-bg);
             border: 1px solid var(--warm-nude);
@@ -343,18 +186,6 @@
             flex-direction: column;
             justify-content: space-between;
             box-shadow: 0 4px 15px rgba(0,0,0,0.04);
-        }
-
-        .product-img-placeholder {
-            background-color: var(--warm-nude);
-            height: 220px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--rose-gold);
-            font-weight: 600;
-            border: 1px dashed var(--rose-gold);
         }
 
         .product-card h3 {
@@ -386,22 +217,198 @@
             margin-bottom: 15px;
         }
 
-        .btn {
-            background: linear-gradient(135deg, var(--rose-gold), var(--soft-gold));
-            color: white;
-            text-decoration: none;
-            text-align: center;
-            padding: 12px;
-            border-radius: 25px;
-            font-size: 12px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            font-weight: 700;
-            display: block;
-            box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2);
+        .product-options {
+            margin-bottom: 12px;
+            font-size: 13px;
+            font-weight: 600;
         }
 
-        /* Kit & Sizing Tables */
+        .product-options select {
+            padding: 5px 10px;
+            border-radius: 4px;
+            border: 1px solid var(--rose-gold);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .card-action-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-action-row button {
+            flex: 1;
+            background: linear-gradient(135deg, var(--rose-gold), var(--soft-gold));
+            color: white;
+            border: none;
+            padding: 10px 5px;
+            border-radius: 20px;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(212, 175, 55, 0.2);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Cart Drawer Styles */
+        #cart-toggle-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--rose-gold);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .cart-drawer {
+            position: fixed;
+            top: 0;
+            right: -350px;
+            width: 320px;
+            height: 100%;
+            background: #ffffff;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 1001;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .cart-drawer.active {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .cart-header h3 {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold);
+        }
+
+        .close-btn {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .cart-items-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-top: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            border-bottom: 1px dashed #f0f0f0;
+            padding-bottom: 10px;
+        }
+
+        .qty-controls button {
+            background: #f0f0f0;
+            border: none;
+            padding: 2px 8px;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .cart-footer {
+            border-top: 1px solid #eee;
+            padding-top: 15px;
+        }
+
+        .checkout-btn {
+            width: 100%;
+            background: var(--rose-gold);
+            color: #fff;
+            border: none;
+            padding: 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: 700;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        /* Reviews Styling */
+        .reviews-section {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+        }
+
+        .review-form-card {
+            background: #faf2f2;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+
+        .review-form-card h3 {
+            margin-top: 0;
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold);
+        }
+
+        .review-form-card input, .review-form-card select, .review-form-card textarea {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .submit-review-btn {
+            background: var(--rose-gold);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .verified-badge {
+            background: #e1f5fe;
+            color: #0288d1;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            margin-left: 8px;
+        }
+
+        .review-card {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid var(--warm-nude);
+            margin-bottom: 15px;
+        }
+
+        /* Kit, Sizing Tables & Policy Sections */
         .info-box {
             background-color: var(--card-bg);
             border: 1px solid var(--warm-nude);
@@ -409,6 +416,35 @@
             padding: 25px;
             margin-top: 20px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .policy-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--warm-nude);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+            font-size: 13.5px;
+            line-height: 1.7;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+        }
+
+        .policy-box h3 {
+            font-family: 'Playfair Display', serif;
+            color: var(--rose-gold);
+            font-size: 16px;
+            margin-top: 20px;
+            margin-bottom: 8px;
+        }
+
+        .policy-box ul {
+            padding-left: 20px;
+            margin-top: 5px;
+        }
+
+        .policy-box p {
+            margin-top: 5px;
+            margin-bottom: 10px;
         }
 
         .size-table {
@@ -465,167 +501,20 @@
         .social-links a:hover {
             color: var(--rose-gold);
         }
+
+        .policy-links-footer {
+            margin-top: 15px;
+            font-size: 12px;
+        }
+
+        .policy-links-footer a {
+            color: var(--rose-gold);
+            text-decoration: underline;
+            margin: 0 8px;
+        }
     </style>
 </head>
-<script>
-    <!-- Step 1 & 2 HTML content goes up here -->
-
-  <!-- Step 3: Paste JavaScript here -->
-  <script>
-    let cart = [];
-
-    // Toggle Cart Open/Close
-    function toggleCart() {
-      document.getElementById('cart-drawer').classList.toggle('active');
-    }
-
-    // Add Item to Cart
-    function addSingleToCart(title, price, buttonElement) {
-      const card = buttonElement.closest('.product-card');
-      const size = card.querySelector('.size-select').value;
-      
-      const existingItem = cart.find(item => item.title === title && item.size === size);
-      if (existingItem) {
-        existingItem.qty += 1;
-      } else {
-        cart.push({ title: title, price: price, size: size, qty: 1 });
-      }
-      updateCartUI();
-      toggleCart();
-    }
-
-    // Update Cart UI
-    function updateCartUI() {
-      const cartContainer = document.getElementById('cart-items');
-      const cartCount = document.getElementById('cart-count');
-      const cartTotal = document.getElementById('cart-total-price');
-      
-      cartContainer.innerHTML = '';
-      let total = 0;
-      let totalCount = 0;
-
-      if (cart.length === 0) {
-        cartContainer.innerHTML = '<p class="empty-msg">Your cart is currently empty.</p>';
-      } else {
-        cart.forEach((item, index) => {
-          total += item.price * item.qty;
-          totalCount += item.qty;
-          cartContainer.innerHTML += `
-            <div class="cart-item">
-              <div>
-                <strong>${item.title}</strong><br>
-                <small>Size: ${item.size} | $${item.price.toFixed(2)} CAD</small>
-              </div>
-              <div class="qty-controls">
-                <button onclick="changeQty(${index}, -1)">-</button>
-                <span>${item.qty}</span>
-                <button onclick="changeQty(${index}, 1)">+</button>
-              </div>
-            </div>
-          `;
-        });
-      }
-
-      cartCount.innerText = totalCount;
-      cartTotal.innerText = total.toFixed(2);
-    }
-
-    // Change Quantity in Cart
-    function changeQty(index, change) {
-      cart[index].qty += change;
-      if (cart[index].qty <= 0) {
-        cart.splice(index, 1);
-      }
-      updateCartUI();
-    }
-
-    // Send Direct Email for Single Item
-    function sendDirectEmail(title, price, buttonElement) {
-      const card = buttonElement.closest('.product-card');
-      const size = card.querySelector('.size-select').value;
-      
-      const subject = encodeURIComponent(`New Order Request: ${title}`);
-      const body = encodeURIComponent(
-        `Hello Nilaria Beauty,\n\nI would like to place an order for:\n\n` +
-        `- Item: ${title}\n` +
-        `- Size: ${size}\n` +
-        `- Quantity: 1\n` +
-        `- Price: $${price.toFixed(2)} CAD\n\n` +
-        `Shipping / Delivery details:\n[Please provide your name, shipping address, or if this is for Local Pickup at 5191 Dundas St W]`
-      );
-      window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
-    }
-
-    // Send Email for Full Cart
-    function sendCartEmail() {
-      if (cart.length === 0) {
-        alert("Your cart is empty!");
-        return;
-      }
-
-      let itemDetails = "";
-      let total = 0;
-
-      cart.forEach((item, i) => {
-        const itemSubtotal = item.price * item.qty;
-        total += itemSubtotal;
-        itemDetails += `${i + 1}. ${item.title} | Size: ${item.size} | Qty: ${item.qty} | Subtotal: $${itemSubtotal.toFixed(2)} CAD\n`;
-      });
-
-      const subject = encodeURIComponent("New Custom Order - Nilaria Beauty Cart");
-      const body = encodeURIComponent(
-        `Hello Nilaria Beauty,\n\nI would like to order the following items from my cart:\n\n` +
-        `${itemDetails}\n` +
-        `Total Estimated Price: $${total.toFixed(2)} CAD\n\n` +
-        `Customer Info:\n` +
-        `- Name:\n` +
-        `- Preferred Fulfillment: [Delivery / Pickup at 5191 Dundas St W]\n` +
-        `- Shipping Address (if applicable):\n`
-      );
-
-      window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
-    }
-
-    // Verified Order Review Handler
-    function submitVerifiedReview(event) {
-      event.preventDefault();
-      const name = document.getElementById('review-name').value;
-      const orderId = document.getElementById('review-order-id').value.trim();
-      const rating = document.getElementById('review-rating').value;
-      const text = document.getElementById('review-text').value;
-      const statusMsg = document.getElementById('review-status-msg');
-
-      if (!orderId.toUpperCase().startsWith('#NB-') || orderId.length < 6) {
-        statusMsg.style.color = 'red';
-        statusMsg.innerText = 'Invalid Order ID. Reviews are restricted to verified buyers (Format: #NB-XXXX).';
-        return;
-      }
-
-      statusMsg.style.color = 'green';
-      statusMsg.innerText = 'Thank you! Your verified review has been submitted for approval.';
-
-      const displayList = document.getElementById('reviews-display-list');
-      const stars = '⭐'.repeat(Number(rating));
-      
-      displayList.innerHTML += `
-        <div class="review-card">
-          <div class="review-header">
-            <strong>${name}</strong> <span class="verified-badge">✔ Verified Buyer</span>
-          </div>
-          <div class="stars">${stars}</div>
-          <p>${text}</p>
-          <small>Order Ref: ${orderId}</small>
-        </div>
-      `;
-
-      document.getElementById('review-form').reset();
-    }
-  </script>
-
-</body>
-</html>
-</script>
-    <body>
+<body>
 
     <header>
         <div class="logo-title">NILARIA</div>
@@ -634,6 +523,9 @@
             <a href="#shop">Shop</a>
             <a href="#sizing">Sizing Guide</a>
             <a href="#included">Prep Kit</a>
+            <a href="#reviews">Reviews</a>
+            <a href="#privacy">Privacy Policy</a>
+            <a href="#returns">Returns & Refunds</a>
             <a href="#contact">Contact</a>
         </nav>
     </header>
@@ -653,194 +545,184 @@
         <!-- Shop Section -->
         <div id="shop" class="section-title">Nail Collections</div>
         
-       <div class="grid">
+        <div class="grid">
 
-  <!-- 1. Golden Matcha (Displays #3 first: golden-matcha 3.jpeg) -->
-  <div class="product-card">
-    <div class="slider">
-      <div class="slides">
-        <img src="golden-matcha-1/golden-matcha 3.jpeg" alt="Golden Matcha 3">
-        <img src="golden-matcha-1/golden-matcha 1.jpg" alt="Golden Matcha 1">
-        <img src="golden-matcha-1/golden-matcha 2.jpeg" alt="Golden Matcha 2">
-      </div>
-      <div class="swipe-hint">‹ Swipe ›</div>
-    </div>
-    <h3>Golden Matcha</h3>
-    <p class="product-desc">Indulge in warm caramel tones, soft nude bases, and delicate molten gold accents designed to capture the light for an effortless, everyday luxury look.</p>
-    <div class="product-meta">
-      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
-      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
-      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
-    </div>
-    <div class="price">$19.99 CAD</div>
-    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
-<div class="product-options">
-  <label>Size: 
-    <select class="size-select">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="Custom">Custom</option>
-    </select>
-  </label>
-</div>
+            <!-- 1. Golden Matcha -->
+            <div class="product-card">
+                <div class="slider">
+                    <div class="slides">
+                        <img src="golden-matcha-1/golden-matcha 3.jpeg" alt="Golden Matcha 3">
+                        <img src="golden-matcha-1/golden-matcha 1.jpg" alt="Golden Matcha 1">
+                        <img src="golden-matcha-1/golden-matcha 2.jpeg" alt="Golden Matcha 2">
+                    </div>
+                    <div class="swipe-hint">‹ Swipe ›</div>
+                </div>
+                <h3>Golden Matcha</h3>
+                <p class="product-desc">Indulge in warm caramel tones, soft nude bases, and delicate molten gold accents designed to capture the light for an effortless, everyday luxury look.</p>
+                <div class="product-meta">
+                    <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+                    <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+                    <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+                </div>
+                <div class="price">$19.99 CAD</div>
+                <div class="product-options">
+                    <label>Size: 
+                        <select class="size-select">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="card-action-row">
+                    <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
+                </div>
+            </div>
 
-<div class="card-action-row">
-  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
-  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
-</div></button>
-  </div>
+            <!-- 2. Lavender Bloom -->
+            <div class="product-card">
+                <div class="slider">
+                    <div class="slides">
+                        <img src="lavender-bloom-1/lavender-bloom 3.jpeg" alt="Lavender Bloom 3">
+                        <img src="lavender-bloom-1/lavender-bloom 1.jpg" alt="Lavender Bloom 1">
+                        <img src="lavender-bloom-1/lavender-bloom 2.jpeg" alt="Lavender Bloom 2">
+                    </div>
+                    <div class="swipe-hint">‹ Swipe ›</div>
+                </div>
+                <h3>Lavender Bloom</h3>
+                <p class="product-desc">Soft, romantic, and dreamy. Lavender Bloom pairs delicate lilac hues with hand-crafted floral artistry for a sweet, ultra-feminine finish.</p>
+                <div class="product-meta">
+                    <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+                    <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+                    <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+                </div>
+                <div class="price">$19.99 CAD</div>
+                <div class="product-options">
+                    <label>Size: 
+                        <select class="size-select">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="card-action-row">
+                    <button onclick="addSingleToCart('Lavender Bloom', 19.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Lavender Bloom', 19.99, this)">Order Directly</button>
+                </div>
+            </div>
 
-  <!-- 2. Lavender Bloom (Displays #3 first: lavender-bloom 3.jpeg) -->
-  <div class="product-card">
-    <div class="slider">
-      <div class="slides">
-        <img src="lavender-bloom-1/lavender-bloom 3.jpeg" alt="Lavender Bloom 3">
-        <img src="lavender-bloom-1/lavender-bloom 1.jpg" alt="Lavender Bloom 1">
-        <img src="lavender-bloom-1/lavender-bloom 2.jpeg" alt="Lavender Bloom 2">
-      </div>
-      <div class="swipe-hint">‹ Swipe ›</div>
-    </div>
-    <h3>Lavender Bloom</h3>
-    <p class="product-desc">Soft, romantic, and dreamy. Lavender Bloom pairs delicate lilac hues with hand-crafted floral artistry for a sweet, ultra-feminine finish.</p>
-    <div class="product-meta">
-      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
-      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
-      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
-    </div>
-    <div class="price">$19.99 CAD</div>
-    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
-<div class="product-options">
-  <label>Size: 
-    <select class="size-select">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="Custom">Custom</option>
-    </select>
-  </label>
-</div>
+            <!-- 3. Blushing Butterfly -->
+            <div class="product-card">
+                <div class="slider">
+                    <div class="slides">
+                        <img src="blushing-butterfly-1/blushing-butterfly 2.jpeg" alt="Blushing Butterfly 2">
+                        <img src="blushing-butterfly-1/blushing-butterfly 1.jpg" alt="Blushing Butterfly 1">
+                        <img src="blushing-butterfly-1/blushing-butterfly 3.jpeg" alt="Blushing Butterfly 3">
+                    </div>
+                    <div class="swipe-hint">‹ Swipe ›</div>
+                </div>
+                <h3>Blushing Butterfly</h3>
+                <p class="product-desc">Flutter into whimsical elegance with soft petal pinks blending into ethereal lavender, finished with intricate butterfly wings that capture an enchanting radiance.</p>
+                <div class="product-meta">
+                    <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+                    <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+                    <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+                </div>
+                <div class="price">$19.99 CAD</div>
+                <div class="product-options">
+                    <label>Size: 
+                        <select class="size-select">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="card-action-row">
+                    <button onclick="addSingleToCart('Blushing Butterfly', 19.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Blushing Butterfly', 19.99, this)">Order Directly</button>
+                </div>
+            </div>
 
-<div class="card-action-row">
-  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
-  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
-</div></button>
-  </div>
+            <!-- 4. Champagne Luxe -->
+            <div class="product-card">
+                <div class="slider">
+                    <div class="slides">
+                        <img src="champagne-luxe-1/champagne-luxe 3.jpeg" alt="Champagne Luxe 3">
+                        <img src="champagne-luxe-1/champagne-luxe 1.jpg" alt="Champagne Luxe 1">
+                        <img src="champagne-luxe-1/champagne-luxe 2.jpeg" alt="Champagne Luxe 2">
+                    </div>
+                    <div class="swipe-hint">‹ Swipe ›</div>
+                </div>
+                <h3>Champagne Luxe</h3>
+                <p class="product-desc">Timeless neutral elegance meets high-shine glamour. Features a flawless nude foundation adorned with shimmering crystal embellishments for special celebrations.</p>
+                <div class="product-meta">
+                    <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+                    <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+                    <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Rhinestones</p>
+                </div>
+                <div class="price">$19.99 CAD</div>
+                <div class="product-options">
+                    <label>Size: 
+                        <select class="size-select">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="card-action-row">
+                    <button onclick="addSingleToCart('Champagne Luxe', 19.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Champagne Luxe', 19.99, this)">Order Directly</button>
+                </div>
+            </div>
 
-  <!-- 3. Blushing Butterfly (Displays #2 first: blushing-butterfly 2.jpeg) -->
-  <div class="product-card">
-    <div class="slider">
-      <div class="slides">
-        <img src="blushing-butterfly-1/blushing-butterfly 2.jpeg" alt="Blushing Butterfly 2">
-        <img src="blushing-butterfly-1/blushing-butterfly 1.jpg" alt="Blushing Butterfly 1">
-        <img src="blushing-butterfly-1/blushing-butterfly 3.jpeg" alt="Blushing Butterfly 3">
-      </div>
-      <div class="swipe-hint">‹ Swipe ›</div>
-    </div>
-    <h3>Blushing Butterfly</h3>
-    <p class="product-desc">Flutter into whimsical elegance with soft petal pinks blending into ethereal lavender, finished with intricate butterfly wings that capture an enchanting radiance.</p>
-    <div class="product-meta">
-      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
-      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
-      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
-    </div>
-    <div class="price">$19.99 CAD</div>
-    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
-<div class="product-options">
-  <label>Size: 
-    <select class="size-select">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="Custom">Custom</option>
-    </select>
-  </label>
-</div>
+            <!-- 5. Pearl Ribbon -->
+            <div class="product-card">
+                <div class="slider">
+                    <div class="slides">
+                        <img src="pearl-ribbon-1/pearl-ribbon 3.jpeg" alt="Pearl Ribbon 3">
+                        <img src="pearl-ribbon-1/pearl-ribbon 1.jpg" alt="Pearl Ribbon 1">
+                        <img src="pearl-ribbon-1/pearl-ribbon 2.jpeg" alt="Pearl Ribbon 2">
+                    </div>
+                    <div class="swipe-hint">‹ Swipe ›</div>
+                </div>
+                <h3>Pearl Ribbon</h3>
+                <p class="product-desc">A modern, coquette twist on a timeless icon. Reimagines the crisp French tip with delicate bow accents and soft creamy undertones.</p>
+                <div class="product-meta">
+                    <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
+                    <p><strong>Available Sizes:</strong> XS, S, M, L</p>
+                    <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
+                </div>
+                <div class="price">$19.99 CAD</div>
+                <div class="product-options">
+                    <label>Size: 
+                        <select class="size-select">
+                            <option value="XS">XS</option>
+                            <option value="S">S</option>
+                            <option value="M">M</option>
+                            <option value="L">L</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </label>
+                </div>
+                <div class="card-action-row">
+                    <button onclick="addSingleToCart('Pearl Ribbon', 19.99, this)">Add to Cart</button>
+                    <button onclick="sendDirectEmail('Pearl Ribbon', 19.99, this)">Order Directly</button>
+                </div>
+            </div>
 
-<div class="card-action-row">
-  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
-  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
-</div></button>
-  </div>
-
-  <!-- 4. Champagne Luxe (Displays #3 first: champagne-luxe 3.jpeg) -->
-  <div class="product-card">
-    <div class="slider">
-      <div class="slides">
-        <img src="champagne-luxe-1/champagne-luxe 3.jpeg" alt="Champagne Luxe 3">
-        <img src="champagne-luxe-1/champagne-luxe 1.jpg" alt="Champagne Luxe 1">
-        <img src="champagne-luxe-1/champagne-luxe 2.jpeg" alt="Champagne Luxe 2">
-      </div>
-      <div class="swipe-hint">‹ Swipe ›</div>
-    </div>
-    <h3>Champagne Luxe</h3>
-    <p class="product-desc">Timeless neutral elegance meets high-shine glamour. Features a flawless nude foundation adorned with shimmering crystal embellishments for special celebrations.</p>
-    <div class="product-meta">
-      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
-      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
-      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Rhinestones</p>
-    </div>
-    <div class="price">$19.99 CAD</div>
-    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
-<div class="product-options">
-  <label>Size: 
-    <select class="size-select">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="Custom">Custom</option>
-    </select>
-  </label>
-</div>
-
-<div class="card-action-row">
-  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
-  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
-</div></button>
-  </div>
-
-  <!-- 5. Pearl Ribbon (Displays #3 first: pearl-ribbon 3.jpeg) -->
-  <div class="product-card">
-    <div class="slider">
-      <div class="slides">
-        <img src="pearl-ribbon-1/pearl-ribbon 3.jpeg" alt="Pearl Ribbon 3">
-        <img src="pearl-ribbon-1/pearl-ribbon 1.jpg" alt="Pearl Ribbon 1">
-        <img src="pearl-ribbon-1/pearl-ribbon 2.jpeg" alt="Pearl Ribbon 2">
-      </div>
-      <div class="swipe-hint">‹ Swipe ›</div>
-    </div>
-    <h3>Pearl Ribbon</h3>
-    <p class="product-desc">A modern, coquette twist on a timeless icon. Reimagines the crisp French tip with delicate bow accents and soft creamy undertones.</p>
-    <div class="product-meta">
-      <p><strong>Includes:</strong> 10 Press-On Nails + Prep Kit (Glue, Pink Nail File, Cuticle Pusher, Prep Pad)</p>
-      <p><strong>Available Sizes:</strong> XS, S, M, L</p>
-      <p><strong>Shape:</strong> Almond | <strong>Finish:</strong> Glossy</p>
-    </div>
-    <div class="price">$19.99 CAD</div>
-    <button class="order-btn"><!-- Example Product Controls (Repeat for each nail style) -->
-<div class="product-options">
-  <label>Size: 
-    <select class="size-select">
-      <option value="XS">XS</option>
-      <option value="S">S</option>
-      <option value="M">M</option>
-      <option value="L">L</option>
-      <option value="Custom">Custom</option>
-    </select>
-  </label>
-</div>
-
-<div class="card-action-row">
-  <button onclick="addSingleToCart('Golden Matcha', 19.99, this)">Add to Cart</button>
-  <button onclick="sendDirectEmail('Golden Matcha', 19.99, this)">Order Directly</button>
-</div></button>
-  </div>
-
-</div>
+        </div>
 
         <!-- Sizing Guide Section -->
         <div id="sizing" class="section-title">Sizing Guide</div>
@@ -908,11 +790,203 @@
             </ul>
         </div>
 
+        <!-- Verified Reviews Section -->
+        <section id="reviews" class="reviews-section">
+            <div class="section-title">Customer Reviews</div>
+            
+            <div class="review-form-card">
+                <h3>Leave a Review</h3>
+                <form id="review-form" onsubmit="submitVerifiedReview(event)">
+                    <input type="text" id="review-name" placeholder="Your Name" required>
+                    <input type="text" id="review-order-id" placeholder="Order ID (e.g., #NB-1042)" required>
+                    <select id="review-rating" required>
+                        <option value="">Select Rating</option>
+                        <option value="5">⭐⭐⭐⭐⭐ (5/5)</option>
+                        <option value="4">⭐⭐⭐⭐ (4/5)</option>
+                        <option value="3">⭐⭐⭐ (3/5)</option>
+                        <option value="2">⭐⭐ (2/5)</option>
+                        <option value="1">⭐ (1/5)</option>
+                    </select>
+                    <textarea id="review-text" rows="3" placeholder="Write your review here..." required></textarea>
+                    <button type="submit" class="submit-review-btn">Submit Review</button>
+                    <p id="review-status-msg"></p>
+                </form>
+            </div>
+
+            <div id="reviews-display-list" class="reviews-grid">
+                <!-- Reviews load here dynamically -->
+            </div>
+        </section>
+
+        <!-- Privacy Policy Section -->
+        <div id="privacy" class="section-title">Privacy Policy</div>
+        <div class="policy-box">
+            <p><em>Last Updated: August 26, 2026</em></p>
+            <p>At Nilaria Beauty, we respect your privacy and are committed to protecting the personal information you provide when you visit our website, place an order, or contact us. This Privacy Policy explains what information we collect, how we use it, and how we protect it.</p>
+
+            <h3>1. Information We Collect</h3>
+            <p>When you place an order or contact Nilaria Beauty, we may collect:</p>
+            <ul>
+                <li>Your name</li>
+                <li>Email address</li>
+                <li>Shipping address</li>
+                <li>Phone number, if provided</li>
+                <li>Your order details</li>
+                <li>Information you provide when contacting us</li>
+            </ul>
+            <p>We may request your shipping address before your order is finalized so that we can estimate the applicable shipping cost and arrange delivery.</p>
+
+            <h3>2. How We Use Your Information</h3>
+            <p>We may use your information to:</p>
+            <ul>
+                <li>Process and confirm your order</li>
+                <li>Communicate with you about your order</li>
+                <li>Estimate and arrange shipping</li>
+                <li>Provide your shipping information to Canada Post when necessary to deliver your order</li>
+                <li>Send you your tracking information</li>
+                <li>Respond to customer service questions</li>
+                <li>Keep appropriate business records</li>
+                <li>Prevent fraud or unauthorized transactions</li>
+                <li>Comply with applicable laws and legal requirements</li>
+            </ul>
+            <p>If you choose home pickup instead of shipping, your address will not be required for shipping purposes. Pickup arrangements, including the pickup address and time, will be communicated privately.</p>
+
+            <h3>3. Payment Information</h3>
+            <p>Nilaria Beauty currently accepts payment by e-transfer. Customers will be provided with the appropriate Nilaria Beauty e-transfer information after their order and total have been confirmed. Nilaria Beauty does not ask customers to provide their online banking passwords, PINs, or other banking login information.</p>
+
+            <h3>4. Sharing Your Information</h3>
+            <p>We do not sell or rent your personal information. We may share information only when reasonably necessary to operate our business, including with:</p>
+            <ul>
+                <li>Canada Post or another delivery service when necessary to ship your order</li>
+                <li>Website or email service providers, if necessary to provide our services</li>
+                <li>Service providers who help us operate our business</li>
+            </ul>
+            <p>Your shipping address will only be shared when necessary to arrange and deliver your order. We may also disclose information when required by law or when reasonably necessary to protect our legal rights, customers, business, or website.</p>
+
+            <h3>5. Your Address and Personal Information</h3>
+            <p>Your shipping address and other personal information provided to Nilaria Beauty are private and will not be publicly displayed on our website or shared with other customers. We request your address when necessary to estimate shipping costs and arrange delivery. Your address may be provided to Canada Post or another delivery service when required to ship your order.</p>
+
+            <h3>6. Website Cookies</h3>
+            <p>Nilaria Beauty does not intentionally use cookies or tracking technologies to collect personal information from website visitors. If this changes in the future, this Privacy Policy may be updated to explain any cookies or tracking technologies that are used.</p>
+
+            <h3>7. Marketing Communications</h3>
+            <p>If you choose to provide your email address to receive promotional messages from Nilaria Beauty, we may use it to send information about new products, promotions, launches, or other updates. You can request to stop receiving promotional communications at any time.</p>
+
+            <h3>8. Protection of Your Information</h3>
+            <p>We take reasonable steps to protect the personal information you provide to us from unauthorized access, use, disclosure, alteration, or loss. However, no method of storing or transmitting information online can be guaranteed to be completely secure.</p>
+
+            <h3>9. Children's Privacy</h3>
+            <p>Our website is not intended for children under the age of 13, and we do not knowingly collect personal information from children under 13.</p>
+
+            <h3>10. Changes to This Privacy Policy</h3>
+            <p>We may update this Privacy Policy from time to time to reflect changes to our business, website, services, or legal requirements. Any updated version will be posted on this page with a revised "Last Updated" date.</p>
+
+            <h3>11. Contact Us</h3>
+            <p>If you have questions about this Privacy Policy or how Nilaria Beauty handles your personal information, please contact us through the contact information provided on our website.<br>
+            <strong>Nilaria Beauty</strong><br>
+            Ontario, Canada<br>
+            Email: <a href="mailto:nilariabeauty@gmail.com" style="color: var(--rose-gold);">nilariabeauty@gmail.com</a></p>
+        </div>
+
+        <!-- Returns & Refunds Policy Section -->
+        <div id="returns" class="section-title">Returns & Refunds Policy</div>
+        <div class="policy-box">
+            <p><em>Last Updated: August 26, 2026</em></p>
+            <p>At Nilaria Beauty, we want you to love your press-on nails. Because our products are personal-use beauty products, we have a limited return policy to protect the health, safety, and hygiene of our customers.</p>
+
+            <h3>1. Returns</h3>
+            <p>For hygiene and sanitary reasons, opened, worn, applied, or used press-on nails cannot be returned or exchanged.</p>
+            <p>We may accept returns for products that are:</p>
+            <ul>
+                <li>Unused</li>
+                <li>Unworn</li>
+                <li>Unopened</li>
+                <li>In their original packaging</li>
+                <li>In resalable condition</li>
+            </ul>
+            <p>Return requests must be made within 14 days of delivery or pickup.</p>
+
+            <h3>2. Incorrect or Damaged Orders</h3>
+            <p>If your order arrives damaged, defective, or you receive the wrong product, please contact us within 7 days of receiving or picking up your order. Please include:</p>
+            <ul>
+                <li>Your order number</li>
+                <li>A description of the issue</li>
+                <li>Clear photos of the product and packaging, when applicable</li>
+            </ul>
+            <p>After reviewing the issue, we may offer a replacement, refund, or another appropriate solution.</p>
+
+            <h3>3. Nail Size Issues</h3>
+            <p>Customers are responsible for selecting the correct nail size before placing an order. Because our press-on nails are sold in specific size options, we cannot accept returns or provide refunds simply because the selected size does not fit. We recommend carefully reviewing the sizing information provided on our website before ordering.</p>
+
+            <h3>4. Change-of-Mind Returns</h3>
+            <p>If you change your mind about your purchase, you may request a return within 14 days of delivery or pickup, provided that the product is unopened, unused, unworn, and in its original resalable condition.</p>
+            <p>For shipped orders, the customer is responsible for return shipping costs unless the return is due to an error on our part or another circumstance where a refund is required by applicable law.</p>
+
+            <h3>5. Final Sale Items</h3>
+            <p>Items identified as final sale are not eligible for return or refund unless they arrive damaged, defective, or we sent the wrong item.</p>
+
+            <h3>6. Refunds</h3>
+            <p>Once an approved return is received and inspected, we will notify you whether your refund has been approved. Approved refunds for e-transfer orders will be returned by e-transfer or another appropriate payment method agreed upon by Nilaria Beauty and the customer. Original shipping charges are generally non-refundable unless the return is due to an error on our part or another circumstance where a refund is required by applicable law.</p>
+
+            <h3>7. Exchanges</h3>
+            <p>We do not guarantee exchanges for different designs or sizes. If you need a different product, you may return an eligible unopened product according to this policy and place a new order.</p>
+
+            <h3>8. Home Pickup</h3>
+            <p>Customers may have the option to pick up their order directly from Nilaria Beauty instead of having it shipped, when home pickup is available. Pickup must be arranged in advance. The pickup address and available pickup times will be provided privately after the order has been confirmed. Customers choosing pickup will not be charged shipping fees. For privacy and security reasons, Nilaria Beauty's home address will not be publicly displayed on the website.</p>
+
+            <h3>9. How to Request a Return</h3>
+            <p>To request a return, please contact Nilaria Beauty through the contact information provided on our website. Please provide:</p>
+            <ul>
+                <li>Your full name</li>
+                <li>Order number</li>
+                <li>Reason for the return</li>
+                <li>Photos, if the product is damaged, defective, or incorrect</li>
+            </ul>
+            <p><strong>Do not send a product back until your return request has been approved.</strong></p>
+
+            <h3>10. Returns That Do Not Meet the Requirements</h3>
+            <p>A return may be refused if the product has been:</p>
+            <ul>
+                <li>Opened</li>
+                <li>Worn or applied</li>
+                <li>Used</li>
+                <li>Damaged after delivery or pickup</li>
+                <li>Altered</li>
+                <li>Returned without approval</li>
+                <li>Returned without its original packaging when the packaging is necessary to resell the product</li>
+            </ul>
+
+            <h3>11. Contact Us</h3>
+            <p>If you have questions about a return, refund, damaged product, incorrect order, shipping, or pickup, please contact Nilaria Beauty through our website.<br>
+            <strong>Nilaria Beauty</strong><br>
+            Ontario, Canada<br>
+            Email: <a href="mailto:nilariabeauty@gmail.com" style="color: var(--rose-gold);">nilariabeauty@gmail.com</a></p>
+        </div>
+
+    </div>
+
+    <!-- Floating Cart Button -->
+    <button id="cart-toggle-btn" onclick="toggleCart()">
+        🛒 Cart (<span id="cart-count">0</span>)
+    </button>
+
+    <!-- Slide-out Shopping Cart Drawer -->
+    <div id="cart-drawer" class="cart-drawer">
+        <div class="cart-header">
+            <h3>Your Order</h3>
+            <button onclick="toggleCart()" class="close-btn">&times;</button>
+        </div>
+        <div id="cart-items" class="cart-items-container">
+            <p class="empty-msg">Your cart is currently empty.</p>
+        </div>
+        <div class="cart-footer">
+            <div class="cart-total"><strong>Total: $<span id="cart-total-price">0.00</span> CAD</strong></div>
+            <button onclick="sendCartEmail()" class="checkout-btn">Email Complete Order</button>
+        </div>
     </div>
 
     <!-- Footer & Contact Section -->
     <footer id="contact">
-        <!-- Logo Image -->
         <img src="FINAL FINAL LOGO.png" alt="Nilaria Beauty Logo" class="footer-logo" onerror="this.style.display='none'">
         
         <h3 style="font-family: 'Playfair Display', serif; color: var(--rose-gold); margin-bottom: 5px;">NILARIA BEAUTY</h3>
@@ -925,8 +999,158 @@
         </div>
 
         <p>Email Inquiries & Direct Orders: <a href="mailto:Nilariabeauty@gmail.com" style="color: var(--rose-gold); font-weight: bold;">Nilariabeauty@gmail.com</a></p>
-        <p style="font-size: 11px; opacity: 0.7;">&copy; 2026 Nilaria Beauty. All rights reserved.</p>
+        
+        <div class="policy-links-footer">
+            <a href="#privacy">Privacy Policy</a> | <a href="#returns">Returns & Refunds Policy</a>
+        </div>
+
+        <p style="font-size: 11px; opacity: 0.7; margin-top: 15px;">&copy; 2026 Nilaria Beauty. All rights reserved.</p>
     </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        let cart = [];
+
+        function toggleCart() {
+            document.getElementById('cart-drawer').classList.toggle('active');
+        }
+
+        function addSingleToCart(title, price, buttonElement) {
+            const card = buttonElement.closest('.product-card');
+            const size = card.querySelector('.size-select').value;
+            
+            const existingItem = cart.find(item => item.title === title && item.size === size);
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ title: title, price: price, size: size, qty: 1 });
+            }
+            updateCartUI();
+            toggleCart();
+        }
+
+        function updateCartUI() {
+            const cartContainer = document.getElementById('cart-items');
+            const cartCount = document.getElementById('cart-count');
+            const cartTotal = document.getElementById('cart-total-price');
+            
+            cartContainer.innerHTML = '';
+            let total = 0;
+            let totalCount = 0;
+
+            if (cart.length === 0) {
+                cartContainer.innerHTML = '<p class="empty-msg">Your cart is currently empty.</p>';
+            } else {
+                cart.forEach((item, index) => {
+                    total += item.price * item.qty;
+                    totalCount += item.qty;
+                    cartContainer.innerHTML += `
+                        <div class="cart-item">
+                            <div>
+                                <strong>${item.title}</strong><br>
+                                <small>Size: ${item.size} | $${item.price.toFixed(2)} CAD</small>
+                            </div>
+                            <div class="qty-controls">
+                                <button onclick="changeQty(${index}, -1)">-</button>
+                                <span>${item.qty}</span>
+                                <button onclick="changeQty(${index}, 1)">+</button>
+                            </div>
+                        </div>
+                    `;
+                });
+            }
+
+            cartCount.innerText = totalCount;
+            cartTotal.innerText = total.toFixed(2);
+        }
+
+        function changeQty(index, change) {
+            cart[index].qty += change;
+            if (cart[index].qty <= 0) {
+                cart.splice(index, 1);
+            }
+            updateCartUI();
+        }
+
+        function sendDirectEmail(title, price, buttonElement) {
+            const card = buttonElement.closest('.product-card');
+            const size = card.querySelector('.size-select').value;
+            
+            const subject = encodeURIComponent(`New Order Request: ${title}`);
+            const body = encodeURIComponent(
+                `Hello Nilaria Beauty,\n\nI would like to place an order for:\n\n` +
+                `- Item: ${title}\n` +
+                `- Size: ${size}\n` +
+                `- Quantity: 1\n` +
+                `- Price: $${price.toFixed(2)} CAD\n\n` +
+                `Shipping / Delivery details:\n[Please provide your name, shipping address, or if this is for Home Pickup]`
+            );
+            window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function sendCartEmail() {
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+
+            let itemDetails = "";
+            let total = 0;
+
+            cart.forEach((item, i) => {
+                const itemSubtotal = item.price * item.qty;
+                total += itemSubtotal;
+                itemDetails += `${i + 1}. ${item.title} | Size: ${item.size} | Qty: ${item.qty} | Subtotal: $${itemSubtotal.toFixed(2)} CAD\n`;
+            });
+
+            const subject = encodeURIComponent("New Custom Order - Nilaria Beauty Cart");
+            const body = encodeURIComponent(
+                `Hello Nilaria Beauty,\n\nI would like to order the following items from my cart:\n\n` +
+                `${itemDetails}\n` +
+                `Total Estimated Price: $${total.toFixed(2)} CAD\n\n` +
+                `Customer Info:\n` +
+                `- Name:\n` +
+                `- Preferred Fulfillment: [Delivery / Home Pickup]\n` +
+                `- Shipping Address (if applicable):\n`
+            );
+
+            window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
+        }
+
+        function submitVerifiedReview(event) {
+            event.preventDefault();
+            const name = document.getElementById('review-name').value;
+            const orderId = document.getElementById('review-order-id').value.trim();
+            const rating = document.getElementById('review-rating').value;
+            const text = document.getElementById('review-text').value;
+            const statusMsg = document.getElementById('review-status-msg');
+
+            if (!orderId.toUpperCase().startsWith('#NB-') || orderId.length < 6) {
+                statusMsg.style.color = 'red';
+                statusMsg.innerText = 'Invalid Order ID. Reviews are restricted to verified buyers (Format: #NB-XXXX).';
+                return;
+            }
+
+            statusMsg.style.color = 'green';
+            statusMsg.innerText = 'Thank you! Your verified review has been submitted for approval.';
+
+            const displayList = document.getElementById('reviews-display-list');
+            const stars = '⭐'.repeat(Number(rating));
+            
+            displayList.innerHTML += `
+                <div class="review-card">
+                    <div class="review-header">
+                        <strong>${name}</strong> <span class="verified-badge">✔ Verified Buyer</span>
+                    </div>
+                    <div class="stars">${stars}</div>
+                    <p>${text}</p>
+                    <small>Order Ref: ${orderId}</small>
+                </div>
+            `;
+
+            document.getElementById('review-form').reset();
+        }
+    </script>
 
 </body>
 </html>
