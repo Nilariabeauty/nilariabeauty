@@ -1083,19 +1083,29 @@
             let existingModal = document.getElementById('order-fallback-modal');
             if (existingModal) existingModal.remove();
 
+            const mailtoUrl = `mailto:nilariabeauty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyText)}`;
+
             const modalHtml = `
                 <div id="order-fallback-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:15px;box-sizing:border-box;">
                     <div style="background:#fff;border-radius:12px;max-width:500px;width:100%;padding:25px;box-shadow:0 10px 25px rgba(0,0,0,0.2);position:relative;font-family:'Montserrat',sans-serif;">
                         <h3 style="margin-top:0;font-family:'Playfair Display',serif;color:#C58B7E;">Complete Your Order</h3>
-                        <p style="font-size:13px;color:#555;margin-bottom:12px;">If your email app did not open automatically, copy the details below and email them directly to <strong>nilariabeauty@gmail.com</strong>:</p>
+                        <p style="font-size:13px;color:#555;margin-bottom:15px;">Choose how you would like to send your order:</p>
                         
-                        <textarea id="order-copy-text" readonly style="width:100%;height:140px;padding:10px;border-radius:6px;border:1px solid #ddd;font-size:12px;font-family:inherit;box-sizing:border-box;margin-bottom:15px;resize:none;background:#fafafa;">${bodyText}</textarea>
-                        
-                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
-                            <button onclick="copyOrderDetails()" style="flex:1;background:linear-gradient(135deg,#C58B7E,#D4AF37);color:#fff;border:none;padding:10px;border-radius:20px;font-weight:700;cursor:pointer;font-size:12px;">📋 Copy Order Details</button>
-                            <button onclick="document.getElementById('order-fallback-modal').remove()" style="background:#f0f0f0;color:#333;border:none;padding:10px 18px;border-radius:20px;font-weight:600;cursor:pointer;font-size:12px;">Close</button>
+                        <div style="margin-bottom:15px;">
+                            <a href="${mailtoUrl}" style="display:block;width:100%;text-align:center;background:var(--rose-gold,#C58B7E);color:#fff;text-decoration:none;padding:12px;border-radius:20px;font-weight:700;font-size:12px;box-sizing:border-box;">✉️ Option 1: Open Default Email App</a>
                         </div>
+
+                        <div style="border-top:1px dashed #ddd;padding-top:12px;margin-top:12px;">
+                            <p style="font-size:12px;color:#666;margin:0 0 8px 0;"><strong>Option 2: Copy Details for Gmail / Webmail</strong></p>
+                            <textarea id="order-copy-text" readonly style="width:100%;height:120px;padding:10px;border-radius:6px;border:1px solid #ddd;font-size:11px;font-family:inherit;box-sizing:border-box;margin-bottom:10px;resize:none;background:#fafafa;">${bodyText}</textarea>
+                            <button onclick="copyOrderDetails()" style="width:100%;background:linear-gradient(135deg,#C58B7E,#D4AF37);color:#fff;border:none;padding:10px;border-radius:20px;font-weight:700;cursor:pointer;font-size:12px;">📋 Copy Order Details & Email to nilariabeauty@gmail.com</button>
+                        </div>
+
                         <p id="copy-status" style="font-size:12px;color:green;margin:8px 0 0 0;text-align:center;"></p>
+                        
+                        <div style="text-align:right;margin-top:15px;">
+                            <button onclick="document.getElementById('order-fallback-modal').remove()" style="background:#f0f0f0;color:#333;border:none;padding:8px 16px;border-radius:15px;font-weight:600;cursor:pointer;font-size:11px;">Close</button>
+                        </div>
                     </div>
                 </div>
             `;
@@ -1119,10 +1129,10 @@
             const subject = `New Order Request: ${title}`;
             const rawBody = `Hello Nilaria Beauty,\n\nI would like to place an order for:\n\n- Item: ${title}\n- Size: ${size}\n- Quantity: 1\n- Price: $${price.toFixed(2)} CAD\n\nShipping / Delivery details:\nName:\nPreferred Fulfillment: [Delivery / Home Pickup]\nShipping Address (if applicable):`;
 
-            // Attempt mailto launch
+            // Trigger mailto link in background
             window.location.href = `mailto:nilariabeauty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawBody)}`;
             
-            // Show seamless fallback popup for browser webmail users
+            // Open option modal on screen
             showOrderFallbackModal(subject, rawBody);
         }
 
@@ -1144,10 +1154,10 @@
             const subject = "New Custom Order - Nilaria Beauty Cart";
             const rawBody = `Hello Nilaria Beauty,\n\nI would like to order the following items from my cart:\n\n${itemDetails}\nTotal Estimated Price: $${total.toFixed(2)} CAD\n\nCustomer Info:\n- Name:\n- Preferred Fulfillment: [Delivery / Home Pickup]\n- Shipping Address (if applicable):`;
 
-            // Attempt mailto launch
+            // Trigger mailto link in background
             window.location.href = `mailto:nilariabeauty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawBody)}`;
             
-            // Show seamless fallback popup for browser webmail users
+            // Open option modal on screen
             showOrderFallbackModal(subject, rawBody);
         }
 
