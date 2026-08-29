@@ -4,10 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Nilaria Beauty | Luxury Press-On Nails</title>
+    <!-- Montserrat & Playfair Display Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
     
+    <!-- Font Awesome CDN for App Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
     <style>
@@ -546,10 +548,12 @@
 
     <div class="container">
         
+        <!-- Shop Section -->
         <div id="shop" class="section-title">Nail Collections</div>
         
         <div class="grid">
 
+            <!-- 1. Golden Matcha -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -583,6 +587,7 @@
                 </div>
             </div>
 
+            <!-- 2. Lavender Bloom -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -616,6 +621,7 @@
                 </div>
             </div>
 
+            <!-- 3. Blushing Butterfly -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -649,6 +655,7 @@
                 </div>
             </div>
 
+            <!-- 4. Champagne Luxe -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -682,6 +689,7 @@
                 </div>
             </div>
 
+            <!-- 5. Pearl Ribbon -->
             <div class="product-card">
                 <div class="slider">
                     <div class="slides">
@@ -717,6 +725,7 @@
 
         </div>
 
+        <!-- Sizing Guide Section -->
         <div id="sizing" class="section-title">Sizing Guide</div>
         <div class="info-box">
             <p><strong>Don't forget to choose your size!</strong> Measure the widest part of your natural nail bed using measuring tape or a strip of paper marked with a ruler.</p>
@@ -769,6 +778,7 @@
             </table>
         </div>
 
+        <!-- Included Prep Kit Section -->
         <div id="included" class="section-title">What's Included</div>
         <div class="info-box">
             <p>Every Nilaria Beauty order includes <strong>10 Reusable Press-On Nails</strong> in your chosen size, along with a complete preparation kit:</p>
@@ -781,6 +791,7 @@
             </ul>
         </div>
 
+        <!-- Verified Reviews Section -->
         <section id="reviews" class="reviews-section">
             <div class="section-title">Customer Reviews</div>
             
@@ -804,9 +815,11 @@
             </div>
 
             <div id="reviews-display-list" class="reviews-grid">
-                </div>
+                <!-- Reviews load here dynamically -->
+            </div>
         </section>
 
+        <!-- Privacy Policy Section -->
         <div id="privacy" class="section-title">Privacy Policy</div>
         <div class="policy-box">
             <p><em>Last Updated: August 26, 2026</em></p>
@@ -876,6 +889,7 @@
             Email: <a href="mailto:nilariabeauty@gmail.com" style="color: var(--rose-gold);">nilariabeauty@gmail.com</a></p>
         </div>
 
+        <!-- Returns & Refunds Policy Section -->
         <div id="returns" class="section-title">Returns & Refunds Policy</div>
         <div class="policy-box">
             <p><em>Last Updated: August 26, 2026</em></p>
@@ -952,10 +966,12 @@
 
     </div>
 
+    <!-- Floating Cart Button -->
     <button id="cart-toggle-btn" onclick="toggleCart()">
         🛒 Cart (<span id="cart-count">0</span>)
     </button>
 
+    <!-- Slide-out Shopping Cart Drawer -->
     <div id="cart-drawer" class="cart-drawer">
         <div class="cart-header">
             <h3>Your Order</h3>
@@ -970,6 +986,7 @@
         </div>
     </div>
 
+    <!-- Footer & Contact Section -->
     <footer id="contact">
         <img src="FINAL FINAL LOGO.png" alt="Nilaria Beauty Logo" class="footer-logo" onerror="this.style.display='none'">
         
@@ -997,6 +1014,7 @@
         <p style="font-size: 11px; opacity: 0.7; margin-top: 15px;">&copy; 2026 Nilaria Beauty. All rights reserved.</p>
     </footer>
 
+    <!-- JavaScript Logic -->
     <script>
         let cart = [];
 
@@ -1061,20 +1079,51 @@
             updateCartUI();
         }
 
+        function showOrderFallbackModal(subject, bodyText) {
+            let existingModal = document.getElementById('order-fallback-modal');
+            if (existingModal) existingModal.remove();
+
+            const modalHtml = `
+                <div id="order-fallback-modal" style="position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:2000;padding:15px;box-sizing:border-box;">
+                    <div style="background:#fff;border-radius:12px;max-width:500px;width:100%;padding:25px;box-shadow:0 10px 25px rgba(0,0,0,0.2);position:relative;font-family:'Montserrat',sans-serif;">
+                        <h3 style="margin-top:0;font-family:'Playfair Display',serif;color:#C58B7E;">Complete Your Order</h3>
+                        <p style="font-size:13px;color:#555;margin-bottom:12px;">If your email app did not open automatically, copy the details below and email them directly to <strong>nilariabeauty@gmail.com</strong>:</p>
+                        
+                        <textarea id="order-copy-text" readonly style="width:100%;height:140px;padding:10px;border-radius:6px;border:1px solid #ddd;font-size:12px;font-family:inherit;box-sizing:border-box;margin-bottom:15px;resize:none;background:#fafafa;">${bodyText}</textarea>
+                        
+                        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                            <button onclick="copyOrderDetails()" style="flex:1;background:linear-gradient(135deg,#C58B7E,#D4AF37);color:#fff;border:none;padding:10px;border-radius:20px;font-weight:700;cursor:pointer;font-size:12px;">📋 Copy Order Details</button>
+                            <button onclick="document.getElementById('order-fallback-modal').remove()" style="background:#f0f0f0;color:#333;border:none;padding:10px 18px;border-radius:20px;font-weight:600;cursor:pointer;font-size:12px;">Close</button>
+                        </div>
+                        <p id="copy-status" style="font-size:12px;color:green;margin:8px 0 0 0;text-align:center;"></p>
+                    </div>
+                </div>
+            `;
+            document.body.insertAdjacentHTML('beforeend', modalHtml);
+        }
+
+        function copyOrderDetails() {
+            const copyText = document.getElementById("order-copy-text");
+            copyText.select();
+            copyText.setSelectionRange(0, 99999);
+            navigator.clipboard.writeText(copyText.value).then(() => {
+                const status = document.getElementById("copy-status");
+                status.innerText = "✓ Copied to clipboard! Ready to paste into your email.";
+            });
+        }
+
         function sendDirectEmail(title, price, buttonElement) {
             const card = buttonElement.closest('.product-card');
             const size = card.querySelector('.size-select').value;
             
-            const subject = encodeURIComponent(`New Order Request: ${title}`);
-            const body = encodeURIComponent(
-                `Hello Nilaria Beauty,\n\nI would like to place an order for:\n\n` +
-                `- Item: ${title}\n` +
-                `- Size: ${size}\n` +
-                `- Quantity: 1\n` +
-                `- Price: $${price.toFixed(2)} CAD\n\n` +
-                `Shipping / Delivery details:\n[Please provide your name, shipping address, or if this is for Home Pickup]`
-            );
-            window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
+            const subject = `New Order Request: ${title}`;
+            const rawBody = `Hello Nilaria Beauty,\n\nI would like to place an order for:\n\n- Item: ${title}\n- Size: ${size}\n- Quantity: 1\n- Price: $${price.toFixed(2)} CAD\n\nShipping / Delivery details:\nName:\nPreferred Fulfillment: [Delivery / Home Pickup]\nShipping Address (if applicable):`;
+
+            // Attempt mailto launch
+            window.location.href = `mailto:nilariabeauty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawBody)}`;
+            
+            // Show seamless fallback popup for browser webmail users
+            showOrderFallbackModal(subject, rawBody);
         }
 
         function sendCartEmail() {
@@ -1092,18 +1141,14 @@
                 itemDetails += `${i + 1}. ${item.title} | Size: ${item.size} | Qty: ${item.qty} | Subtotal: $${itemSubtotal.toFixed(2)} CAD\n`;
             });
 
-            const subject = encodeURIComponent("New Custom Order - Nilaria Beauty Cart");
-            const body = encodeURIComponent(
-                `Hello Nilaria Beauty,\n\nI would like to order the following items from my cart:\n\n` +
-                `${itemDetails}\n` +
-                `Total Estimated Price: $${total.toFixed(2)} CAD\n\n` +
-                `Customer Info:\n` +
-                `- Name:\n` +
-                `- Preferred Fulfillment: [Delivery / Home Pickup]\n` +
-                `- Shipping Address (if applicable):\n`
-            );
+            const subject = "New Custom Order - Nilaria Beauty Cart";
+            const rawBody = `Hello Nilaria Beauty,\n\nI would like to order the following items from my cart:\n\n${itemDetails}\nTotal Estimated Price: $${total.toFixed(2)} CAD\n\nCustomer Info:\n- Name:\n- Preferred Fulfillment: [Delivery / Home Pickup]\n- Shipping Address (if applicable):`;
 
-            window.location.href = `mailto:nilariabeauty@gmail.com?subject=${subject}&body=${body}`;
+            // Attempt mailto launch
+            window.location.href = `mailto:nilariabeauty@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(rawBody)}`;
+            
+            // Show seamless fallback popup for browser webmail users
+            showOrderFallbackModal(subject, rawBody);
         }
 
         function submitVerifiedReview(event) {
